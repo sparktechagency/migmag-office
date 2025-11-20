@@ -51,15 +51,15 @@ export default function Banner() {
 
                 {/* Overlay Content at Top-Left */}
                 <div className="absolute inset-0 text-white flex flex-col items-start justify-start p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/30 to-transparent">
-                    <h1 className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">
+                    <h1 className="text-lg md:text-xl lg:text-2xl text-[#FFBD00] font-bold leading-snug">
                         <Link href={"/"}>
-                            <Image
-                                src={"/update-image/logo/logo.png"}
-                                alt={"logo"}
+                           <Image
+                                src="/images/logo/white-logo.svg"
                                 width={200}
-                                height={400}
-                                className="mb-10"
-                            />
+                                height={5000}
+                                alt="logo"
+                                className=" h-20 w-[52]  "
+                                />
                         </Link>
                     </h1>
                     <h2 className="text-3xl md:text-4xl lg:text-3xl leading-tight uppercase mt-1">

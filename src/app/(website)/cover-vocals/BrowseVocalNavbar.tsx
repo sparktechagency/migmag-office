@@ -120,7 +120,7 @@ const BrowseVocalNavbar: React.FC = () => {
             <MaxWidth>
                 <div className={``}>
                     <div
-                        className='flex items-center justify-between  py-5 z-50    mx-auto  '>
+                        className='flex items-center justify-between   z-50    mx-auto  '>
                         {/* Logo */}
                         <Link href="/">
                             <Image

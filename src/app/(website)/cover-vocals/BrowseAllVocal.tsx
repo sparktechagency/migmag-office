@@ -1047,7 +1047,7 @@ const BrowseAllVocal = () => {
                                                                 setSelectedBPM([minValue, maxValue]);
                                                                 setOpenBPM(false);
                                                             }}
-                                                            className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
+                                                            className="bg-[#FFBD00] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
                                                         >
                                                             Filter
                                                         </button>
@@ -1463,10 +1463,10 @@ const BrowseAllVocal = () => {
 
                                     {/* Right: Price and Button */}
                                     <div className="flex items-center justify-between gap-4 w-full md:w-auto">
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
+                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                             <p className="text-sm text-white font-semibold">${item?.price}</p>
                                         </Link>
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
+                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                             <button className="px-4 py-1  cursor-pointer text-black btnColor text-sm font-medium rounded">
                                                 Get Vocal
                                             </button>
@@ -1532,7 +1532,7 @@ const BrowseAllVocal = () => {
                                     </div>
 
                                     {/* Right Section */}
-                                    <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
+                                    <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                         <button className="px-2 py-1  cursor-pointer text-black btnColor text-xs font-medium rounded">
                                             Get Vocal
                                         </button>

@@ -98,7 +98,7 @@ export default function MusicSlider() {
                       alt={item.title}
                       width={500}
                       height={500}
-                      className="object-cover w-[300px] h-[300px]"
+                      className="object-cover w-[200px] h-[200px]"
                     />
                     <button
                       onClick={() => handlePlayTrack(item)}
