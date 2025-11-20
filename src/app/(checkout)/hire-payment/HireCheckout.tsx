@@ -1,0 +1,341 @@
+'use client';
+
+import { useCustomOrderApiMutation } from '@/app/api/paymentApi/paymentApi';
+import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
+import { imgUrl } from '@/utility/img/imgUrl';
+import {
+    useStripe,
+    useElements,
+    CardNumberElement,
+    CardExpiryElement,
+    CardCvcElement,
+} from '@stripe/react-stripe-js';
+import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import Swal from "sweetalert2";
+
+type CheckoutFormProps = {
+    clientSecret: string;
+    artistId: number | null;
+    slug: string | null
+};
+
+export default function HireCheckout({ clientSecret, artistId, slug }: CheckoutFormProps) {
+
+    const stripe = useStripe();
+    const elements = useElements();
+    const router = useRouter();
+    const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+
+    const toggleFAQ = (index: number) => {
+        setOpenFAQ(openFAQ === index ? null : index);
+    };
+    const [loading, setLoading] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+
+
+    const [customOrderApi] = useCustomOrderApiMutation()
+
+    const id = artistId;
+
+    const payload = {
+        order_type: "Custom",
+        payment_method: "card"
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setErrorMessage(null);
+
+        if (!stripe || !elements || !clientSecret) {
+            setLoading(false);
+            return toast.error('Stripe is not ready');
+        }
+
+
+
+        try {
+            // 1️⃣ Confirm Stripe payment
+            const result = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: elements.getElement(CardNumberElement)!,
+                    billing_details: {
+                        name,
+                        email,
+                    },
+                },
+            });
+
+            if (result.error) {
+                setErrorMessage(result.error.message ?? 'Payment failed');
+                toast.error(result.error.message ?? 'Payment failed');
+            } else if (result.paymentIntent?.status === 'succeeded') {
+
+                const res = await customOrderApi({ id, payload }).unwrap();;
+
+                if (res) {
+
+                    Swal.fire({
+
+                        position: "top-end",
+                        icon: "success",
+                        title: res?.message || 'Payment Successful!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    router.push('/');
+                }
+
+
+
+
+
+            }
+
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.error(err);
+                toast.error(err.message);
+                setErrorMessage(err.message);
+            } else {
+                console.error(err);
+                toast.error('Something went wrong');
+                setErrorMessage('Something went wrong');
+            }
+        }
+
+        setLoading(false);
+    };
+
+    const inputStyle = {
+        style: {
+            base: {
+                fontSize: '16px',
+                color: '#32325d',
+                '::placeholder': { color: '#a0aec0' },
+            },
+            invalid: { color: '#e53e3e' },
+        },
+    };
+
+
+    const { data } = useArtistDetailsQuery({ slug });
+
+
+
+
+
+
+    return (
+        <div className="min-h-screen flex flex-col gap-x-6 md:space-y-0 space-y-6  md:flex-row items-center justify-center max-w-6xl mx-auto   ">
+            {/* left side  */}
+            <div className=' w-full ' >
+                <div>
+
+                    <div>
+                        <span>
+                            <svg width="174" height="22" viewBox="0 0 174 22" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="url(#clip0_5_567)">
+                                    <path
+                                        d="M76.7524 9.06705H68.8925V21.7686H64.7479V9.06705H56.8997V5.57196H76.7524V9.06705Z"
+                                        fill="black" />
+                                    <path
+                                        d="M88.8754 22.003C81.7704 22.003 78.7181 19.2971 78.7181 13.651V5.57196H82.8628V13.648C82.8628 15.9148 83.4845 18.5049 88.8636 18.5049C94.2427 18.5049 94.8673 15.8911 94.8673 13.648V5.57196H99.012V13.648C99.0357 19.2704 95.9627 22.003 88.8754 22.003Z"
+                                        fill="black" />
+                                    <path
+                                        d="M122.053 5.57196V21.7686H116.399L105.386 9.62187V21.7686H101.241V5.57196H106.866L117.903 17.7365V5.57196H122.053Z"
+                                        fill="black" />
+                                    <path
+                                        d="M128.522 8.88013V12.1675H141.45V15.179H128.522V18.4664H141.45V21.7745H124.365V5.57196H141.45V8.88013H128.522Z"
+                                        fill="black" />
+                                    <path
+                                        d="M168.162 21.7686H164.017V10.6633L157.3 21.7686H154.298L147.581 10.6633V21.7686H143.436V5.57196H149.061L155.826 17.0007L162.59 5.57196H168.215L168.162 21.7686Z"
+                                        fill="black" />
+                                    <path
+                                        d="M51.6005 5.03792V21.9496H37.5118V8.55376C37.5118 8.55376 32.8491 8.77926 32.8491 16.7782V22.003H18.7278V16.3302C18.4317 8.77925 14.0651 8.55376 14.0651 8.55376V21.9466H0V5.03495H14.0651C14.0651 5.03495 17.2239 5.03494 18.7278 9.12638V3.05176e-05H32.8343V9.16792C34.2997 5.03792 37.497 5.03792 37.497 5.03792H51.6005Z"
+                                        fill="black" />
+                                    <path
+                                        d="M173.988 7.38475C173.987 7.74199 173.88 8.09087 173.681 8.38729C173.482 8.68371 173.2 8.91437 172.87 9.05013C172.541 9.18589 172.178 9.22067 171.829 9.15004C171.479 9.07941 171.159 8.90656 170.907 8.65333C170.656 8.4001 170.485 8.07786 170.416 7.72733C170.347 7.3768 170.384 7.0137 170.521 6.68393C170.658 6.35417 170.89 6.07254 171.186 5.87461C171.483 5.67669 171.832 5.57135 172.188 5.57194C172.426 5.56872 172.662 5.61348 172.883 5.70355C173.103 5.79363 173.303 5.92718 173.471 6.09628C173.639 6.26538 173.771 6.46658 173.86 6.68792C173.949 6.90926 173.993 7.14623 173.988 7.38475ZM170.732 7.38475C170.738 7.67315 170.829 7.95326 170.994 8.18996C171.158 8.42666 171.389 8.60942 171.657 8.71537C171.924 8.82132 172.217 8.84573 172.499 8.78554C172.78 8.72536 173.038 8.58326 173.239 8.37704C173.44 8.17082 173.577 7.90965 173.63 7.62627C173.684 7.34288 173.653 7.04987 173.542 6.78395C173.43 6.51803 173.243 6.29101 173.003 6.13136C172.763 5.97171 172.482 5.88651 172.194 5.88644C171.999 5.88391 171.805 5.92119 171.624 5.99601C171.443 6.07084 171.279 6.18163 171.143 6.32172C171.006 6.46181 170.899 6.62826 170.828 6.81099C170.758 6.99371 170.725 7.1889 170.732 7.38475ZM173.15 7.08805H172.662C172.661 7.03053 172.649 6.97375 172.626 6.92105C172.603 6.86835 172.569 6.82081 172.528 6.78125C172.486 6.74169 172.437 6.71092 172.383 6.69074C172.329 6.67056 172.272 6.66139 172.215 6.66378C171.889 6.66378 171.723 6.93971 171.723 7.36992C171.723 7.80013 171.916 8.08496 172.221 8.08496C172.334 8.08433 172.442 8.04027 172.524 7.96188C172.605 7.88349 172.654 7.77674 172.659 7.66364H173.144C173.115 7.89198 172.998 8.09991 172.819 8.24376C172.639 8.38761 172.411 8.45618 172.182 8.43506C172.047 8.4374 171.913 8.411 171.788 8.35761C171.664 8.30422 171.552 8.22504 171.46 8.12527C171.369 8.02551 171.299 7.90741 171.256 7.77876C171.213 7.65011 171.198 7.51382 171.211 7.37883C171.198 7.23981 171.215 7.09957 171.26 6.96755C171.306 6.83554 171.379 6.71482 171.475 6.61358C171.571 6.51234 171.687 6.43291 171.816 6.38066C171.946 6.32841 172.085 6.30456 172.224 6.31071C172.45 6.29791 172.673 6.37257 172.847 6.51934C173.02 6.66611 173.131 6.87387 173.156 7.09993L173.15 7.08805Z"
+                                        fill="black" />
+                                    <path
+                                        d="M130.89 7.69629C130.888 8.05268 130.781 8.40057 130.582 8.69604C130.384 8.99152 130.102 9.22134 129.773 9.35651C129.444 9.49168 129.082 9.52614 128.734 9.45553C128.385 9.38492 128.065 9.21243 127.814 8.9598C127.563 8.70717 127.393 8.38573 127.324 8.03605C127.255 7.68637 127.292 7.32411 127.428 6.995C127.565 6.6659 127.795 6.3847 128.091 6.18688C128.387 5.98905 128.734 5.88347 129.09 5.88346C129.328 5.88024 129.564 5.925 129.785 6.01508C130.005 6.10515 130.205 6.2387 130.373 6.40781C130.541 6.57691 130.673 6.77812 130.762 6.99946C130.851 7.2208 130.894 7.45777 130.89 7.69629ZM127.634 7.69629C127.641 7.98382 127.733 8.26274 127.898 8.49815C128.063 8.73356 128.293 8.91501 128.561 9.01983C128.828 9.12465 129.12 9.14817 129.401 9.08745C129.681 9.02673 129.938 8.88448 130.138 8.67846C130.338 8.47244 130.473 8.21182 130.527 7.92919C130.58 7.64655 130.549 7.35444 130.437 7.08941C130.326 6.82437 130.139 6.59816 129.9 6.43908C129.661 6.28 129.38 6.19509 129.093 6.19499C128.897 6.19244 128.703 6.22982 128.522 6.30482C128.341 6.37982 128.177 6.4909 128.041 6.63131C127.904 6.77171 127.797 6.93853 127.726 7.1216C127.656 7.30468 127.623 7.5002 127.631 7.69629H127.634ZM130.052 7.39959H129.564C129.563 7.34219 129.55 7.28557 129.527 7.23306C129.504 7.18055 129.47 7.13319 129.429 7.09372C129.387 7.05424 129.338 7.02342 129.285 7.0031C129.231 6.98277 129.174 6.97332 129.117 6.9753C128.791 6.9753 128.625 7.2542 128.625 7.68144C128.625 8.10868 128.818 8.39649 129.123 8.39649C129.235 8.39585 129.343 8.3521 129.423 8.27427C129.504 8.19644 129.553 8.09045 129.558 7.97814H130.046C130.017 8.20647 129.9 8.41441 129.72 8.55825C129.541 8.7021 129.313 8.77067 129.084 8.74956C128.949 8.75194 128.814 8.72547 128.689 8.6719C128.565 8.61834 128.453 8.53889 128.361 8.43879C128.269 8.33869 128.2 8.22022 128.157 8.09121C128.114 7.96219 128.099 7.82557 128.113 7.69035C128.1 7.55157 128.117 7.41165 128.163 7.28C128.209 7.14835 128.282 7.02802 128.378 6.92711C128.474 6.8262 128.59 6.74705 128.719 6.69498C128.848 6.6429 128.987 6.6191 129.126 6.6252C129.35 6.61461 129.57 6.68951 129.741 6.83483C129.912 6.98015 130.023 7.18511 130.049 7.40848L130.052 7.39959Z"
+                                        fill="black" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_5_567">
+                                        <rect width="174" height="22" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </div>
+
+
+                    <span className={"flex flex-row gap-x-2 my-8 "} >
+                        <h1 className="text-xl font-semibold">{data?.data?.artist?.name}</h1>
+                        <p className={"mt-1 text-gray-500 "} >&lt; Confirm & Pay &gt; Submit requirements</p>
+                    </span>
+
+                    {/* Artist Info */}
+
+                    {/* Artist Info */}
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className={" w-24 h-24 rounded-full flex item-center justify-center "} >
+                            <Image
+                                src={`${imgUrl}/${data?.data?.artist?.profile}`}
+                                alt="Rayne"
+                                width={2000}
+                                height={2000}
+                                className="rounded-full  w-24 h-24 "
+                            />
+                        </div>
+                        <div>
+                            <p className="font-semibold">{data?.data?.artist?.name} <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Available</span></p>
+                            <p className="text-sm text-gray-500">Singer • Songwriter</p>
+                        </div>
+                    </div>
+                    {/* Upgrade */}
+                    {/* <h2 className="font-semibold mb-2">Upgrade</h2> */}
+                    {/* <div className="border rounded-lg p-4 flex flex-col gap-3"> */}
+                    {/* <div className="flex items-start gap-3">
+                            <input
+                                type="checkbox"
+                                className="w-5 h-5 mt-1 cursor-pointer"
+                                checked={lyricsChecked}
+                                onChange={() => setLyricsChecked(!lyricsChecked)}
+                            />
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center">
+                                    <span className="font-medium">Lyrics</span>
+                                    <span className="font-semibold">+ $99</span>
+                                </div>
+                                <p className="text-gray-500 text-sm mt-1">
+                                    The vocalist will write lyrics and a vocal melody for your song.
+                                </p>
+                            </div>
+                        </div> */}
+
+                    {/* Textarea appears only when checkbox is checked */}
+                    {/* {lyricsChecked && (
+                            <textarea
+                                className="w-full border rounded-md p-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                placeholder="Add any notes or ideas for the lyrics..."
+                                value={lyricsText}
+                                onChange={(e) => setLyricsText(e.target.value)}
+                                rows={4}
+                            />
+                        )} */}
+                    {/* </div> */}
+
+                    {/* FAQ Accordion */}
+                    <div className="mt-6 space-y-2">
+                        {[
+                            "What do I need to provide the artist?",
+                            "Can I hire a singer for cover vocals?",
+                            "What will I get?",
+                        ].map((q, i) => (
+                            <div key={i} className="border-b">
+                                <button
+                                    className="flex justify-between items-center w-full py-3 text-left"
+                                    onClick={() => toggleFAQ(i)}
+                                >
+                                    <span className="text-sm font-medium">{q}</span>
+                                    <ChevronDown
+                                        className={`w-4 h-4 cursor-pointer transition-transform ${openFAQ === i ? "rotate-180" : ""
+                                            }`}
+                                    />
+                                </button>
+                                {openFAQ === i && (
+                                    <p className="text-sm text-gray-500 pb-3">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="text-xs text-gray-400 mt-10 flex gap-4">
+                        {/* <a href="#"></a> */}
+                        <Link href={"/refund-policy"}>Refund policy</Link>
+                        <Link href={"/privacy-policy"}>Privacy policy</Link>
+                        <Link href={"/term&condiction"}>Terms of Service</Link>
+                    </div>
+                </div>
+
+            </div>
+            {/* right side  */}
+            <div className=' w-full ' >
+                <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+                    <h2 className="text-2xl font-semibold text-center mb-6">Secure Payment</h2>
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-sm font-medium">Name</label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                className="px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                            <label className="text-sm font-medium">Email</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="px-4 py-2 border border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                            <label className="text-sm font-medium">Card Number</label>
+                            <div className="px-4 py-2 border border-gray-300 rounded-md">
+                                <CardNumberElement options={inputStyle} />
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                            <label className="text-sm font-medium">Expiry Date</label>
+                            <div className="px-4 py-2 border border-gray-300 rounded-md">
+                                <CardExpiryElement options={inputStyle} />
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                            <label className="text-sm font-medium">CVC</label>
+                            <div className="px-4 py-2 border border-gray-300 rounded-md">
+                                <CardCvcElement options={inputStyle} />
+                            </div>
+                        </div>
+
+                        {errorMessage && (
+                            <p className="text-sm text-red-600 text-center">{errorMessage}</p>
+                        )}
+
+                        <button
+                            type="submit"
+                            disabled={!stripe || loading}
+                            className="bg-black cursor-pointer text-white font-semibold py-2 rounded-md"
+                        >
+                            {loading ? 'Processing...' : 'Pay Now'}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <Toaster position="top-center" />
+        </div>
+    );
+}
