@@ -24,22 +24,58 @@ const ArtistList: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [cardsPerView, setCardsPerView] = useState(5);
-    const url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+
+    const [visibleSlides, setVisibleSlides] = useState(3);
+
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL;
     const player = usePlayerStore();
 
+    // Play Track
     const handlePlayTrack = (track: Track) => {
         player.setTrack({
             id: track.id,
             title: track.title,
             name: track.artist?.name || track.title,
             song_poster: track.song_poster,
-            song: track.song.startsWith("http") ? track.song : `${imgUrl}/${track.song}`,
+            song: track.song.startsWith("http")
+                ? track.song
+                : `${imgUrl}/${track.song}`,
         });
     };
 
-    // Fetch artists
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+
+            if (width < 480) {
+                // Extra small devices (mobile phones)
+                setVisibleSlides(1);
+            } else if (width >= 480 && width < 768) {
+                // Small devices (large phones)
+                setVisibleSlides(1);
+            } else if (width >= 768 && width < 1024) {
+                // Medium devices (tablets)
+                setVisibleSlides(2);
+            } else if (width >= 1024 && width < 1280) {
+                // Large devices (small laptops)
+                setVisibleSlides(3);
+            } else {
+                // Extra large devices (desktops and up)
+                setVisibleSlides(4);
+            }
+        };
+
+        handleResize(); // initial check
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
+    // Fetch Artists
     useEffect(() => {
         const fetchArtists = async () => {
             try {
@@ -47,8 +83,8 @@ const ArtistList: React.FC = () => {
                 const artists: Artist[] = response.data.data.data.slice(0, 15);
                 setTopArtists(artists);
             } catch (err) {
-                console.error(err);
-                setError("Failed to load artists");
+                const message = err instanceof Error ? err.message : String(err);
+                setError(`Failed to load artists: ${message}`);
             } finally {
                 setLoading(false);
             }
@@ -56,40 +92,24 @@ const ArtistList: React.FC = () => {
         fetchArtists();
     }, [url]);
 
-    // Responsive cards per view
+    // Auto Slide
     useEffect(() => {
-        const updateCards = () => {
-            if (window.innerWidth >= 1024) setCardsPerView(5);
-            else if (window.innerWidth >= 768) setCardsPerView(3);
-            else setCardsPerView(2);
-        };
-        updateCards();
-        window.addEventListener("resize", updateCards);
-        return () => window.removeEventListener("resize", updateCards);
-    }, []);
+        if (topArtists.length <= visibleSlides) return;
 
-    // Auto-slide
-    useEffect(() => {
-        if (topArtists.length <= cardsPerView) return;
         const interval = setInterval(() => {
             setCurrentIndex((prev) =>
-                prev >= topArtists.length - cardsPerView ? 0 : prev + 1
+                prev >= topArtists.length - visibleSlides ? 0 : prev + 1
             );
         }, 3000);
+
         return () => clearInterval(interval);
-    }, [topArtists, cardsPerView]);
+    }, [topArtists, visibleSlides]);
 
-    const prevSlide = () => {
-        setCurrentIndex((prev) =>
-            prev === 0 ? topArtists.length - cardsPerView : prev - 1
-        );
-    };
+    const maxIndex = topArtists.length - visibleSlides;
+    const nextSlide = () => currentIndex < maxIndex && setCurrentIndex(i => i + 1);
+    const prevSlide = () => currentIndex > 0 && setCurrentIndex(i => i - 1);
+    const totalBullets = maxIndex + 1;
 
-    const nextSlide = () => {
-        setCurrentIndex((prev) =>
-            prev >= topArtists.length - cardsPerView ? 0 : prev + 1
-        );
-    };
 
     if (loading) return <div className="text-center py-10 text-white">Loading...</div>;
     if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
@@ -103,18 +123,17 @@ const ArtistList: React.FC = () => {
                     </h1>
 
                     <div className="relative w-full overflow-hidden mt-6">
+
+                        {/* TRACK */}
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
-                            style={{
-                                transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`,
-                                width: `${(topArtists.length * 100) / cardsPerView}%`,
-                            }}
+                            style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}
                         >
-                            {topArtists.map((artist: Artist) => (
+                            {topArtists.map((artist) => (
                                 <div
                                     key={artist.id}
                                     className="flex-shrink-0 flex justify-center"
-                                    style={{ width: `${100 / topArtists.length}%` }}
+                                    style={{ minWidth: `${100 / visibleSlides}%` }}
                                 >
                                     <div className="p-3 rounded-lg w-full flex flex-col items-center justify-between">
                                         <div className="relative flex justify-center items-center group">
@@ -129,6 +148,7 @@ const ArtistList: React.FC = () => {
                                                 alt={artist.name}
                                                 className="lg:h-[150px] lg:w-[150px] w-[100px] h-[100px] rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
                                             />
+
                                             <Play
                                                 onClick={() =>
                                                     handlePlayTrack({
@@ -158,6 +178,7 @@ const ArtistList: React.FC = () => {
                                                     className="w-4 h-4 mt-1"
                                                 />
                                             </Link>
+
                                             <h1 className="text-[15px] text-[#504E4E]">
                                                 Singer - Songwriter
                                             </h1>
@@ -167,12 +188,15 @@ const ArtistList: React.FC = () => {
                             ))}
                         </div>
 
+                        {/* LEFT BUTTON */}
                         <button
                             onClick={prevSlide}
                             className="absolute lg:top-1/3 top-[22%] left-2 cursor-pointer transform -translate-y-1/2 bg-black/40 p-1 lg:p-2 rounded-full text-white"
                         >
                             <ChevronLeft />
                         </button>
+
+                        {/* RIGHT BUTTON */}
                         <button
                             onClick={nextSlide}
                             className="absolute lg:top-1/3 top-[22%] right-2 cursor-pointer transform -translate-y-1/2 bg-black/40 p-1 lg:p-2 rounded-full text-white"
@@ -180,14 +204,14 @@ const ArtistList: React.FC = () => {
                             <ChevronRight />
                         </button>
 
+                        {/* DOTS */}
                         <div className="flex justify-center mt-4 space-x-2">
-                            {Array.from({
-                                length: topArtists.length - cardsPerView + 1,
-                            }).map((_, i) => (
-                                <div
+                            {Array.from({ length: totalBullets }).map((_, i) => (
+                                <button
                                     key={i}
                                     onClick={() => setCurrentIndex(i)}
-                                    className={`h-2 w-2 rounded-full cursor-pointer transition-all duration-300 ${currentIndex === i ? "btnColor w-4" : "bg-gray-400"
+                                    aria-label={`Go to slide ${i + 1}`}
+                                    className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${i === currentIndex ? "btnColor" : "bg-gray-300"
                                         }`}
                                 />
                             ))}

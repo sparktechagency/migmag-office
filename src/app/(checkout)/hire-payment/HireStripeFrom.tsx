@@ -20,6 +20,7 @@ export default function HireStripeFrom() {
     const artistParams = searchParams?.get('artistId');
     const priceParams = searchParams?.get('price');
     const artistSlug = searchParams?.get('slug');
+    
 
     // const price: number | null = priceParam ? parseFloat(priceParam) : null;
     const artistId: number | null = artistParams ? Number(artistParams) : null;

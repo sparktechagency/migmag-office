@@ -7,8 +7,7 @@ const nextConfig = {
     return [
       {
         source: "/songs/:path*",
-        // destination: "https://api.tunem.com/:path*", // original server
-        destination: "http://103.186.20.110:8003/:path*", // original server
+        destination: "https://api.tunem.com/:path*", // original server
       },
       // AI Matcher API rewrites - proxy to Python FastAPI backend
       {

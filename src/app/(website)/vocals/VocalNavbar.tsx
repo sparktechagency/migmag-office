@@ -112,7 +112,7 @@ const VocalNavbar = () => {
             <>
                 <MaxWidth>
                     <div className="  mx-auto    bg-opacity-90 ">
-                        <div className='flex items-center justify-between py-5 mx-auto '>
+                        <div className='flex items-center justify-between  mx-auto '>
                             {/* Logo */}
                             <Link className='  ' href="/">
                                 <Link href="/">
@@ -167,12 +167,12 @@ const VocalNavbar = () => {
                                         </ul>
                                     </li>
                                     <li>
-                  {/* <Link
+                                        {/* <Link
                     className={` ${pathname === "/ai-matcher" ? " btnTextColor " : "text-white"} `}
                     href="/ai-matcher">
                     AI Matcher
                   </Link> */}
-                </li>
+                                    </li>
                                     <li><Link
                                         className={`${pathname === "/artist-list" ? "text-[#FFBD00]" : "text-white"}`}
                                         href="/artist-list">Artist</Link></li>

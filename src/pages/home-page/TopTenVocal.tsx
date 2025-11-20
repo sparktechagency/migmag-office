@@ -114,7 +114,7 @@ const TopTenVocal: React.FC = () => {
           </div>
 
           <button className="w-[112px] rounded-2xl text-lg py-1 text-black btnColor">
-            <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>Get Vocal</Link>
+            <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>Get Vocal</Link>
           </button>
         </div>
       </div>

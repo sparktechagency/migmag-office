@@ -24,7 +24,7 @@ const BrowseVocalFooter: React.FC = () => {
                     <div className="mx-auto flex justify-center">
                         <span>
                             <Image src={"/images/logo/white-footer.png"} alt={"logo"} width={200} height={200}
-                                className={" h-16 w-36  "} />
+                                className={" h-16 w-32  "} />
                         </span>
                     </div>
 
@@ -42,7 +42,7 @@ const BrowseVocalFooter: React.FC = () => {
                             {/*logo*/}
                             <div>
                                 <Image src={"/images/logo/white-logo.svg"} alt={"logo"} width={200} height={200}
-                                    className={" object-cover lg:w-full lg:h-full h-16 "} />
+                                    className={" object-cover w-52 h-16 "} />
 
                             </div>
                             <div className={`my-5`}>
