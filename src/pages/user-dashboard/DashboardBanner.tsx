@@ -58,7 +58,7 @@ export default function Banner() {
                                 width={200}
                                 height={5000}
                                 alt="logo"
-                                className=" h-20 w-[52]  "
+                                className=" h-20  "
                                 />
                         </Link>
                     </h1>

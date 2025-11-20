@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
       <MaxWidth>
         <>
           <div
-            className='flex items-center justify-between   py-5   mx-auto '>
+            className='flex items-center justify-between   py-7   mx-auto '>
             {/* Logo */}
             <Link href="/">
 

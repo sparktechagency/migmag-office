@@ -128,7 +128,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                 width={200}
                                 height={5000}
                                 alt="logo"
-                                className=" h-36 "
+                                className=" h-32 "
                             />
                         </Link>
 
