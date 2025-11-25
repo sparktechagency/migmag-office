@@ -61,7 +61,7 @@ const VocalInfoSection = ({ id }: { id: number }) => {
           }
           {/* This vocal is exclusive to subscribed members. Join today to access a growing library of subscription-only vocals at no extra cost. For any questions, reach us at   */}
           <a href="mailto:support@vocalfy.com" className="text-blue-600 underline">
-              support@vocalfy.com
+            support@tunem.com
           </a>
           .
         </p>

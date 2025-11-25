@@ -110,7 +110,7 @@ const LoginPage: React.FC = () => {
                         Privacy Policy
                     </Link>
 
-                    <Link href="/terms-and-conditions" className="text-white hover:btnTextColor transition">
+                    <Link href="/term&condiction" className="text-white hover:btnTextColor transition">
                         Terms & Conditions
                     </Link>
                 </div>

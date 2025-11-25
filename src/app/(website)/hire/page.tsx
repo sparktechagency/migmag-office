@@ -38,6 +38,7 @@ const Page: React.FC = () => {
                 <UpdateFooter></UpdateFooter>
             </div>
         </>
+
     )
 }
 

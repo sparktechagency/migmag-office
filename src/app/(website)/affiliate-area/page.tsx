@@ -39,7 +39,7 @@ const Page: React.FC = () => {
                     <div className={`my-12`} >
                         <p className=' md:text-lg text-sm   ' >
 
-                            Application is linked to your Vocalfy account
+                            Application is linked to your Tunem account
                         </p>
 
                         <div className={` mt-5 `} >
@@ -89,7 +89,7 @@ const Page: React.FC = () => {
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <label htmlFor="reason" className="mb-1 text-lg">
-                                        Why are you the perfect fit for promoting Vocalfy?*
+                                        Why are you the perfect fit for promoting Tunem?*
                                     </label>
                                     <textarea
                                         id="reason"

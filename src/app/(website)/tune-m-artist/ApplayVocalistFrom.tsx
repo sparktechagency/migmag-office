@@ -25,7 +25,7 @@ const ApplayVocalistFrom: React.FC = () => {
     const [about, setAbout] = useState<string>('');
     const [genree, setGenre] = useState<string[]>([]);
     const [other_genre, setOther_genre] = useState<string>('');
-    const [audio, setAudio] = useState<File | null>(null);
+    // const [audio, setAudio] = useState<File | null>(null);
 
     const handleGenreChange = (genre: string) => {
         if (genree.includes(genre)) {
@@ -53,9 +53,9 @@ const ApplayVocalistFrom: React.FC = () => {
 
         formData.append('other_genre', other_genre);
 
-        if (audio instanceof File) {
-            formData.append('file', audio);
-        }
+        // if (audio instanceof File) {
+        //     formData.append('file', audio);
+        // }
 
         try {
             const res = await applayArtist(formData).unwrap();
@@ -66,7 +66,7 @@ const ApplayVocalistFrom: React.FC = () => {
                 setAbout('');
                 setGenre([]);
                 setOther_genre('');
-                setAudio(null); // reset to null if audio is File | null
+                // setAudio(null); // reset to null if audio is File | null
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -254,7 +254,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                 </div>
 
                                 {/* Audio Upload */}
-                                <div className='flex flex-col mt-5'>
+                                {/* <div className='flex flex-col mt-5'>
                                     <label htmlFor='fileUpload' className='text-white text-lg font-bold leading-6'>
                                         Upload Your File
                                     </label>
@@ -270,7 +270,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                         }}
                                         className='hover:outline-0 focus:outline-0 mt-5 border border-[#818080] px-10 rounded-2xl w-full lg:w-[45%] bg-black text-white py-2 text-lg font-medium cursor-pointer'
                                     />
-                                </div>
+                                </div> */}
 
                                 {/* Submit */}
                                 <div className='mt-9'>

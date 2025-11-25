@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
@@ -49,21 +49,38 @@ const RegisterForm = () => {
         password_confirmation,
     }
 
+    const [passwordError, setPasswordError] = useState("");
 
+    useEffect(() => {
+        const uppercase = /[A-Z]/;
+        const lowercase = /[a-z]/;
+        const number = /[0-9]/;
+
+        // Only run validation if user typed something
+        if (!password && !password_confirmation) {
+            setPasswordError("");
+            return;
+        }
+
+        if (password !== password_confirmation) {
+            setPasswordError("Passwords do not match");
+        } else if (!uppercase.test(password)) {
+            setPasswordError("Password must contain at least one uppercase letter");
+        } else if (!lowercase.test(password)) {
+            setPasswordError("Password must contain at least one lowercase letter");
+        } else if (!number.test(password)) {
+            setPasswordError("Password must contain at least one number");
+        } else if (password.length < 8) {
+            setPasswordError("Password must be at least 8 characters long");
+        } else {
+            setPasswordError(""); // valid password
+        }
+    }, [password, password_confirmation]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (password !== password_confirmation) {
-            Swal.fire({
-                position: "top",
-                icon: "warning",
-                title: "Passwords do not match",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            return;
-        }
+
 
         try {
             const res = await userRegistration(payload).unwrap();
@@ -74,11 +91,10 @@ const RegisterForm = () => {
                     icon: "success",
                     title: res.message,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
 
                 reset();
-
                 router.push(`/otp-verify?email=${encodeURIComponent(email)}`);
 
                 setFormData({
@@ -88,21 +104,24 @@ const RegisterForm = () => {
                     password_confirmation: "",
                 });
             }
-
         } catch (err) {
             const error = err as FetchBaseQueryError & {
                 data?: { message?: string };
             };
 
+            console.log(error);
+
             Swal.fire({
                 position: "top",
                 icon: "error",
-                title: error?.data?.message || "Something went wrong",
+                title: error?.data?.message,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,
             });
         }
     };
+
+
 
     return (
         <div className="max-w-[584px] mx-auto p-6 rounded-3xl shadow-md bg-[#1a1a1a] text-white  ">
@@ -211,6 +230,9 @@ const RegisterForm = () => {
                         )}
                     </div>
                 </div>
+
+
+                {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
 
                 {/* Terms */}
                 <div className="flex items-center space-x-2">
