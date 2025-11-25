@@ -190,7 +190,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                             <div className="w-40 h-40">
                                 <Image
                                     src={`${imgUrl}/${artistData?.profile}`}
-                                    className="mx-auto rounded-full w-36 h-36 "
+                                    className="mx-auto w-36 h-36  rounded-[100%]   "
                                     width={160} // should match w-40 (40*4)
                                     height={160} // should match h-40
                                     alt="Singer Image"

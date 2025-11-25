@@ -25,7 +25,7 @@ const Page: React.FC = () => {
 
             <div className={``} >
                 {/* browse vocal content  */}
-                <div className=' mt-8    '>
+                <div className='    '>
                     <BrowseVocalBanner />
                 </div>
                 <div>

@@ -167,7 +167,7 @@ const UpdateFooter: React.FC = () => {
                                         </li>
                                         <li><Link className="text-lg textColor leading-9" href="/term&condiction">Term
                                             &
-                                            Condiction</Link></li>
+                                            Conditions</Link></li>
                                         <li><Link className="text-lg textColor leading-9" href="/privacy-policy">Privacy
                                             Policy</Link></li>
                                         <li><Link className="text-lg textColor leading-9"
