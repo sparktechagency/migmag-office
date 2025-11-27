@@ -11,7 +11,7 @@ const TermPage: React.FC = () => {
                     <p className=" text-lg textColor lg:text-xl mb-4">
                         Welcome to TuneM! These terms and conditions outline the rules and regulations for the use of
                         the TuneM website,
-                        located at <a href="www.tunem.com" className="text-blue-600 underline">www.tunem.com</a>.
+                        located at <a href="" className="text-blue-600 underline">www.tunem.com</a>.
                     </p>
                     <p className="mb-6 text-lg textColor lg:text-xl ">
                         By accessing this website we assume you accept these terms and conditions in full.

@@ -24,6 +24,7 @@ export function MusickPlayer() {
   const [duration, setDuration] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [volume, setVolume] = useState(1);
+  const playerRef = useRef<HTMLDivElement>(null);
 
   // const router = useRouter();
   // const [addWishList] = useAddWishListMutation();
@@ -94,6 +95,29 @@ export function MusickPlayer() {
       // if (currentTrack) trigger(Number(currentTrack.id));
     }
   };
+
+
+  useEffect(() => {
+  function handleClickOutside(event: MouseEvent) {
+    if (playerRef.current && !playerRef.current.contains(event.target as Node)) {
+      hidePlayer(); // auto close
+    }
+  }
+
+  if (show) {
+    document.addEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [show, hidePlayer]);
+
+
+
+
+
+
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!audioRef.current || !progressRef.current) return;
@@ -168,6 +192,21 @@ export function MusickPlayer() {
 
   if (!show || !currentTrack) return null;
 
+  // musick player automatic close 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="h-52 mx-auto">
       <AnimatePresence>
@@ -175,6 +214,7 @@ export function MusickPlayer() {
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
           exit={{ y: "100%" }}
+          ref={playerRef}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 mx-auto z-50 bg-[#1b1b1b] px-4 py-4 shadow-xl border-t-2 border-[#FFBD00] rounded-t-xl"
         >
