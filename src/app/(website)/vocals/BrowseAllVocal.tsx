@@ -563,7 +563,7 @@ const BrowseAllVocal = () => {
                                                                 setSelectedBPM([minValue, maxValue]);
                                                                 setOpenBPM(false);
                                                             }}
-                                                            className="bg-[#E7F056] cursor-pointer  px-4 py-1 font-semibold rounded-lg transition"
+                                                            className="btnColor cursor-pointer  px-4 py-1 font-semibold rounded-lg transition"
                                                         >
                                                             Filter
                                                         </button>
@@ -1053,7 +1053,7 @@ const BrowseAllVocal = () => {
                                                                 setSelectedBPM([minValue, maxValue]);
                                                                 setOpenBPM(false);
                                                             }}
-                                                            className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
+                                                            className="btnColor cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
                                                         >
                                                             Filter
                                                         </button>
