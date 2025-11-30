@@ -32,7 +32,7 @@ const VocalPublish: React.FC = () => {
             </div>
             <div className=" maw-w-[450px] lg:mt-8 mt-3 ">
               <h1 className=" lg:text-lg leading-6 textColor ">
-                 (Whether you&apos;re uploading your track to Spotify, Apple Music, Beatport, or YouTube, all vocals from TuneM are fully royalty-free and release-ready. Create, produce, and release your music with total confidence no clearance issues, no limits.).
+                 Whether you&apos;re uploading your track to Spotify, Apple Music, Beatport, or YouTube, all vocals from TuneM are fully royalty-free and release-ready. Create, produce, and release your music with total confidence no clearance issues, no limits.
               </h1>
             </div>
             <div className={""} >

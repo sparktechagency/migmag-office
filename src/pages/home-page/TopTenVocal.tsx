@@ -97,23 +97,23 @@ const TopTenVocal: React.FC = () => {
 
           <div className="flex flex-col">
             <Link href={`/singer-profile/${item.artist.slug}`}>
-              <h3 className="text-lg font-bold leading-6 hover:underline headerColor">
+              <h3 className="text-xs font-bold leading-6 hover:underline headerColor">
                 {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
               </h3>
             </Link>
 
             <p className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
-              <Link href={`/singer-profile/${item.artist.slug}`}>
+              <Link className = {`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
                 {item.artist.name.length > 10 ? item.artist.name.slice(0, 10) + "..." : item.artist.name}
               </Link>
-              <div className="flex justify-center items-center gap-x-3">
-                <span>{item?.license?.name}</span>
-                <span>${item?.price}</span>
+              <div className="flex justify-center items-center gap-x-3 text-xs ">
+                <span  >{item?.license?.name}</span>
+                <span  >${item?.price}</span>
               </div>
             </p>
           </div>
 
-          <button className=" px-2 rounded-2xl text-[14px] py-1  text-black btnColor">
+          <button className=" px-2 rounded-2xl text-xs py-1  text-black btnColor">
             <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>Get Vocal</Link>
           </button>
         </div>

@@ -858,7 +858,7 @@ const BrowseAllVocal = () => {
 
                     {/* wrapper — keeps the old horizontal-scroll safety net */}
                     <div
-                        className="max-h-[600px] overflow-y-scroll no-scrollbar space-y-4 hidden md:block"
+                        className="overflow-y-scroll no-scrollbar space-y-4 hidden md:block"
                         onScroll={handleScroll}
                     >
                         {tracks.slice(0, visibleData).map((item, i) => (
@@ -867,19 +867,24 @@ const BrowseAllVocal = () => {
                                 className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"
                                     }`}
                             >
-                                <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
-                                    {/* Left: Cover and Play */}
-                                    <div className="flex items-center gap-3 w-full md:max-w-[300px]">
+                                <div className="flex items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
+
+                                    {/* LEFT: Cover + Play + Title */}
+                                    <div className="flex items-center gap-3 w-full md:max-w-[350px]">
+
+                                        {/* Image */}
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
-                                            <Link href={`/music-details/${item?.id}`}>
+                                            <Link href={`/music-details/${item.id}`}>
                                                 <Image
-                                                    src={`${imgUrl}/${item?.song_poster}`}
-                                                    alt={item?.title}
+                                                    src={`${imgUrl}/${item.song_poster}`}
+                                                    alt={item.title}
                                                     fill
-                                                    className="rounded"
+                                                    className="rounded object-cover"
                                                 />
                                             </Link>
                                         </div>
+
+                                        {/* Play Button */}
                                         <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
                                             <FaPlay
                                                 onClick={() =>
@@ -895,34 +900,48 @@ const BrowseAllVocal = () => {
                                                 className="text-white cursor-pointer"
                                             />
                                         </button>
+
+                                        {/* Title / Artist */}
                                         <div className="flex flex-col">
-                                            <Link href={`/music-details/${item?.id}`}><h3 className="text-sm font-semibold text-white hover:underline ">{item?.title}</h3></Link>
+                                            <Link href={`/music-details/${item.id}`}>
+                                                <h3 className="text-sm font-semibold text-white hover:underline">
+                                                    {item.title}
+                                                </h3>
+                                            </Link>
+
                                             <p className="text-xs textColor">
-                                                <Link className={`hover:underline`} href={`/singer-profile/${item?.artist?.slug}`}>
-                                                    {item?.artist?.name}
+                                                <Link
+                                                    href={`/singer-profile/${item.artist?.slug}`}
+                                                    className="hover:underline"
+                                                >
+                                                    {item.artist?.name}
                                                 </Link>
-                                                ・ {item?.bpm} BPM ・ {item?.key?.name}
+                                                ・ {item.bpm} BPM ・ {item.key?.name}
                                             </p>
                                         </div>
                                     </div>
 
-                                    {/* Center: Genre and License */}
-                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full md:w-[400px] text-sm textColor">
-                                        <p>{item?.genre?.name || "N/A"}</p>
-                                        <p>{item?.license?.name || "N/A"}</p>
-                                    </div>
 
-                                    {/* Right: Price and Button */}
-                                    <div className="flex items-center justify-between gap-4 w-full md:w-auto">
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
-                                            <p className="text-sm text-white font-semibold">${item?.price}</p>
+                                    <div className="hidden md:flex items-center justify-between gap-10  w-full text-sm textColor">
+                                        <p className = {` w-[30%]  `} >{item.genre?.name || "N/A"}</p>
+                                        <p className = {` w-[30%]  `} >{item.license?.name || "N/A"}</p>
+                                        <p className = {` w-[30%]  `} >{item.artist?.language || "N/A"}</p>
+                                        <Link className = {`w-[30%]`}  href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
+                                            <p className="text-sm text-white font-semibold">${item.price}</p>
                                         </Link>
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
-                                            <button className="px-4 py-1  cursor-pointer text-black btnColor text-sm font-medium rounded">
+
+                                        <Link  className = {`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
+                                            <button className=" py-1 px-3 text-black btnColor text-sm font-medium rounded">
                                                 Get Vocal
                                             </button>
                                         </Link>
                                     </div>
+
+
+                                    <div className="flex items-center justify-end gap-4">
+
+                                    </div>
+
                                 </div>
                             </motion.div>
                         ))}

@@ -10,18 +10,18 @@ const ArtistLibraryBanner = () => {
                     <div className='  flex flex-col lg:flex-row justify-between '>
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>
-                            {/* <div
+                            <div
                                 className={`  max-w-[633px] lg:text-[60px] text-4xl `}>
                                 <h1>TuneM Artists
                                 </h1>
 
-                            </div> */}
+                            </div>
 
-                            {/* <div>
-                                <h1 className='lg:text-xl text-lg font-semibold ' >
+                            <div>
+                                <h1 className='lg:text-xl text-lg font-semibold btnTextColor ' >
                                     Top voices, ready to work.
                                 </h1>
-                            </div> */}
+                            </div>
                             <div
                                 className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 '>
                                 <p>

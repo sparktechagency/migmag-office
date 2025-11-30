@@ -25,7 +25,8 @@ interface ArtistCardProps {
   updated_at?: string;
 }
 
-const ArtistCard: React.FC<{ artist: ArtistCardProps }> = ({ artist }) => {
+const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ artist, index }) => {
+  console.log(" musick index is ", index)
   const player = usePlayerStore();
 
   const handlePlayTrack = () => {
@@ -42,7 +43,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps }> = ({ artist }) => {
     <>
       <div>
         {/* ----------- Desktop View ----------- */}
-        <div className="hidden md:flex items-center justify-between p-4 border-b py-6 hover:bg-gray-900 transition-colors duration-200 gap-4">
+        <div className={`hidden md:flex items-center p-4  py-6  transition-colors duration-200 gap-4 ${index % 2 == 0 ? "bg-[#201F1F]" : "bg-[#000000]"} `}>
           {/* Left */}
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <Link href={`/singer-profile/${artist.slug}`}>
@@ -54,40 +55,52 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps }> = ({ artist }) => {
                 className="rounded-full w-16 h-16"
               />
             </Link>
+            <div>
+              {/* Play Button */}
+              <button
+                onClick={handlePlayTrack}
+                className="flex items-center justify-center  text-white cursor-pointer "
+              >
+                ▶
+              </button>
+
+            </div>
             <div className="truncate ">
-              <h3 className="text-white font-semibold md:text-lg text-xs truncate">
+              <h3 className="text-sm font-semibold text-white">
                 {artist.name}
               </h3>
-              <div className={`flex flex-row item-center gap-x-2  `} >
-                <p className="text-white text-sm underline  truncate">
+              <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
+                <p className="textColor text-sm underline  truncate">
                   {artist.singer}
                 </p>
-                <p>•</p>
-                <p className={`text-white underline  `} >Songwriter</p>
-                {/* <p className={`text-white`} > {artist?.language} </p> */}
+                <p className={`mt-0.5 textColor `} >•</p>
+                <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
               </div>
             </div>
           </div>
 
-          {/* Play Button */}
-          <button
-            onClick={handlePlayTrack}
-            className="w-10 h-10 flex items-center justify-center rounded-full btnColor text-black cursor-pointer "
-          >
-            ▶
-          </button>
 
-          {/* Price & Hire */}
-          <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
-            <h1 className="text-white md:font-semibold text-xs md:text-xl">
+          <div className="flex items-center gap-x-6 flex-1 justify-between min-w-0">
+            <p className={`text-sm textColor w-[30%] `} > {artist?.language} </p>
+            <p className={`text-sm textColor w-[30%] `} > {artist?.gender} </p>
+            <h1 className="text-white md:font-semibold text-xs md:text-xl w-[30%] ">
               ${artist.price}
             </h1>
-            <Link href={`/hire-from/${artist.slug}`}>
-              <button className="text-black btnColor md:px-4 md:py-2 py-1 md:text-[16px] text-xs px-2 rounded-md cursor-pointer">
+            <Link className = {` w-[30%] `}  href={`/hire-from/${artist.slug}`}>
+              <button className="text-black btnColor md:px-4 md:py-2 py-1  text-xs px-2 rounded-md cursor-pointer">
                 Hire Now
               </button>
             </Link>
           </div>
+
+
+          {/* Price & Hire */}
+          {/* <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
+            
+          </div> */}
+
+
+
         </div>
 
         {/* ----------- Mobile View ----------- */}

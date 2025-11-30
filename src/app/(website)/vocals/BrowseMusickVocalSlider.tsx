@@ -108,7 +108,7 @@ export default function MusicSlider() {
                     </button>
                   </div>
                   <Link href={`/music-details/${item.id}`}>
-                    <h3 className="text-xs textColor font-bold mt-3 hover:underline">
+                    <h3 className="text-xs text-white font-bold mt-3 hover:underline">
                       {item.title.slice(0, 15)}...
                     </h3>
                   </Link>
@@ -187,14 +187,17 @@ export default function MusicSlider() {
               ))}
             </div>
           </div>
-
+{/* 
           <div className="mt-4 md:mt-12">
             <Link href="/vocals">
               <button className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]">
                 BROWSE VOCALS
               </button>
             </Link>
-          </div>
+          </div> */}
+
+
+
         </MaxWidth>
       </main>
 

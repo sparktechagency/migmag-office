@@ -19,6 +19,7 @@ const ApplayVocalistFrom: React.FC = () => {
 
 
     const [name, setName] = useState<string>('');
+    const [demoLink, setDemoLink] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [socialLink, setSocialLink] = useState<string>('');
     const [referral, setReferral] = useState<string>('');
@@ -186,7 +187,21 @@ const ApplayVocalistFrom: React.FC = () => {
                                     />
                                 </div>
 
-                                {/* Social Link */}
+                                {/* demo line */}
+                                <div className='flex flex-col mt-5'>
+                                    <label htmlFor="id" className='text-white text-lg font-bold leading-6'>Submit your demo</label>
+                                    <input
+                                        id='link'
+                                        // placeholder="Instagram or TikTok"
+                                        value={demoLink}
+                                        onChange={(e) => setDemoLink(e.target.value)}
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
+                                        type="url"
+                                        required
+                                    />
+                                </div>
+
+                                {/* Referral */}
                                 <div className='flex flex-col mt-5'>
                                     <label htmlFor="Referral" className='text-white text-lg font-bold leading-6'>Referral</label>
                                     <input

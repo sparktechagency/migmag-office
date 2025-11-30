@@ -1418,7 +1418,7 @@ const BrowseAllVocal = () => {
                             >
                                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
                                     {/* Left: Cover and Play */}
-                                    <div className="flex items-center gap-1 w-full md:max-w-[300px]">
+                                    <div className="flex items-center gap-1 w-full md:max-w-[400px]">
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
                                             <Link href={`/music-details/${item?.id}`}>
                                                 <Image
@@ -1456,17 +1456,14 @@ const BrowseAllVocal = () => {
                                     </div>
 
                                     {/* Center: Genre and License */}
-                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full md:w-[400px] text-sm textColor">
-                                        <p>{item?.genre?.name || "N/A"}</p>
-                                        <p>{item?.license?.name || "N/A"}</p>
-                                    </div>
-
-                                    {/* Right: Price and Button */}
-                                    <div className="flex items-center justify-between gap-4 w-full md:w-auto">
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
+                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full  text-sm textColor">
+                                        <p className = {` w-[40%] `} >{item?.genre?.name || "N/A"}</p>
+                                        <p className = {`w-[40%]`} > {item?.license?.name || "N/A"}</p>
+                                        <p className = {`w-[40%]`} >  {item?.artist?.language || "N/A"}</p>
+                                        <Link className = {` w-[40%] `}  href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                             <p className="text-sm text-white font-semibold">${item?.price}</p>
                                         </Link>
-                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
+                                        <Link  className = {` w-[60%] `} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                             <button className="px-4 py-1  cursor-pointer text-black btnColor text-sm font-medium rounded">
                                                 Get Vocal
                                             </button>
