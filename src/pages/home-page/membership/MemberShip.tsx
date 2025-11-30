@@ -32,8 +32,8 @@ export default function MemberShip() {
                                 >
                                     Monthly
                                     {activeTab === "monthly" && (
-                                        <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full border  ">
-                                            2 MONTHS FREE
+                                        <span className="  ">
+
                                         </span>
                                     )}
                                 </button>

@@ -109,7 +109,7 @@ const TunemNavbar = () => {
                                     {/* ▼ smooth dropdown */}
                                     <ul
                                         className="
-                  absolute left-0 top-full w-36 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+                  absolute left-0 top-full w-40 rounded-lg bg-white shadow-lg border border-gray-300 z-50
                   overflow-hidden                        /* keeps content clipped during scale */
                   opacity-0 translate-y-2 pointer-events-none
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto

@@ -10,7 +10,7 @@ const BrowseVocalBanner = () => {
                     {/* Left Side */}
                     <div className="text-white w-full max-w-2xl ">
                         <h1 className="text-4xl lg:text-5xl font-bold  mb-6">
-                            Studio-Quality Vocals Ready to Use
+                            Studio-Quality Vocals <span className='btnTextColor' >Ready to Use</span>
                         </h1>
                         <p className="text-lg lg:text-xl font-medium text-gray-200 leading-relaxed">
                             Royalty-free vocals by leading singers & songwriters
