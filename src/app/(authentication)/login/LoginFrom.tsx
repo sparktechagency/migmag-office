@@ -44,8 +44,8 @@ const LoginForm: React.FC = () => {
                 setPasswordError("Password must contain at least one lowercase letter");
             } else if (!number.test(value)) {
                 setPasswordError("Password must contain at least one number");
-            } else if (value.length < 8) {
-                setPasswordError("Password must be at least 8 characters long");
+            } else if (value.length <= 6) {
+                setPasswordError("Password must be at least 6 characters long");
             } else {
                 setPasswordError(""); // No errors
             }

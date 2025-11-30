@@ -70,7 +70,7 @@ const RegisterForm = () => {
             setPasswordError("Password must contain at least one lowercase letter");
         } else if (!number.test(password)) {
             setPasswordError("Password must contain at least one number");
-        } else if (password.length < 8) {
+        } else if (password.length <= 6) {
             setPasswordError("Password must be at least 8 characters long");
         } else {
             setPasswordError(""); // valid password
