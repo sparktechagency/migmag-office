@@ -12,6 +12,7 @@ import { useAllGenreQuery, useAllKeyQuery, useArtistListApiQuery, useBrowseCover
 import { ArtistList, Song } from '@/utility/type/websiteApiType';
 import { imgUrl } from '@/utility/img/imgUrl';
 import { usePlayerStore } from '@/app/store/usePlayerStore';
+import CtaSection from '@/components/cta/CtaSection';
 
 
 
@@ -923,14 +924,14 @@ const BrowseAllVocal = () => {
 
 
                                     <div className="hidden md:flex items-center justify-between gap-10  w-full text-sm textColor">
-                                        <p className = {` w-[30%]  `} >{item.genre?.name || "N/A"}</p>
-                                        <p className = {` w-[30%]  `} >{item.license?.name || "N/A"}</p>
-                                        <p className = {` w-[30%]  `} >{item.artist?.language || "N/A"}</p>
-                                        <Link className = {`w-[30%]`}  href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
+                                        <p className={` w-[30%]  `} >{item.genre?.name || "N/A"}</p>
+                                        <p className={` w-[30%]  `} >{item.license?.name || "N/A"}</p>
+                                        <p className={` w-[30%]  `} >{item.artist?.language || "N/A"}</p>
+                                        <Link className={`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
                                             <p className="text-sm text-white font-semibold">${item.price}</p>
                                         </Link>
 
-                                        <Link  className = {`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
+                                        <Link className={`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
                                             <button className=" py-1 px-3 text-black btnColor text-sm font-medium rounded">
                                                 Get Vocal
                                             </button>
@@ -1398,26 +1399,7 @@ const BrowseAllVocal = () => {
 
             </MaxWidth>
             <section className="lg:mb-16 mb-10">
-                <div
-                    className="  bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 mt-16 relative overflow-hidden"
-                >
-                    {/* <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div> */}
-
-                    <div className="relative lg:mt-20 mt-10 z-10 text-center">
-                        <h1 className="text-white  font-bold lg:text-3xl text-lg">
-                            Become a TuneM Artist.
-                        </h1>
-                        <p className="text-white leading-6 lg:text-xl font-thin max-w-[482px] mx-auto mt-3 lg:mt-9">
-                            We work with talented singers and songwriters ready to take their voice further.
-                            Expand your audience, get discovered, and join our global music network.
-                        </p>
-                        <Link href="/tune-m-artist">
-                            <button className="cursor-pointer text-black btnColor   text-sm px-4 py-2  rounded-2xl mx-auto mt-4 lg:mt-12">
-                                GET STARTED
-                            </button>
-                        </Link>
-                    </div>
-                </div>
+                <CtaSection />
             </section>
         </>
     );

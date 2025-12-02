@@ -23,8 +23,8 @@ const BrowseVocalFooter: React.FC = () => {
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
                         <span>
-                            <Image src={"/images/logo/white-footer.png"} alt={"logo"} width={200} height={200}
-                                className={" h-16 w-32  "} />
+                            <Image src={"/images/logo/update-footer-logo.png"} alt={"logo"} width={200} height={200}
+                                className={" h-12 w-32  "} />
                         </span>
                     </div>
 
