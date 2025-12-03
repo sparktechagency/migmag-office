@@ -24,7 +24,7 @@ const BrowseVocalFooter: React.FC = () => {
                     <div className="mx-auto flex justify-center">
                         <span>
                             <Image src={"/images/logo/update-footer-logo.png"} alt={"logo"} width={200} height={200}
-                                className={" h-12 w-32  "} />
+                                className={" h-11 w-24  "} />
                         </span>
                     </div>
 
@@ -139,9 +139,7 @@ const BrowseVocalFooter: React.FC = () => {
                                             Policy</Link></li>
                                         <li><Link className="text-lg text-white leading-9" href="/faq">FAQ</Link>
                                         </li>
-                                        <li><Link className="text-lg text-white leading-9" href="/term&condiction">Term
-                                            &
-                                            Condiction</Link></li>
+                                        <li><Link className="text-lg text-white leading-9" href="/term&condiction">Terms & Conditions</Link></li>
                                         <li><Link className="text-lg text-white leading-9" href="/privacy-policy">Privacy
                                             Policy</Link></li>
                                         <li><Link className="text-lg text-white leading-9"

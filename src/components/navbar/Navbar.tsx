@@ -135,11 +135,20 @@ const Navbar: React.FC = () => {
           <div
             className='flex items-center justify-between   py-7   mx-auto '>
             {/* Logo */}
+            {/* <Link href="/">
+
+              <Image src={"/update-image/logo/tunem-white.png"} width={700} height={700} alt={"logo"} className={``} />
+
+            </Link> */}
             <Link href="/">
-
-              <Image src={"/update-image/logo/update-logo.svg"} width={700} height={700} alt={"logo"} className={` w-40 h-10 `} />
-
-            </Link>
+                                            <Image
+                                                src="/update-image/logo/tunem-white.png"
+                                                width={200}
+                                                height={5000}
+                                                alt="logo"
+                                                className="  "
+                                            />
+                                        </Link>
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden cursor-pointer ">
