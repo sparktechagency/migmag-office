@@ -16,10 +16,11 @@ export default function SingerList() {
     return (
         <>
             <div className="w-full max-w-6xl mx-auto my-14 space-y-6     ">
-                {artistData.slice(0, 3).map((artist: any) => (
+                {artistData.slice(0, 3).map((artist: any, i: number) => (
                     <SingerCard
-                        key={artist.id}
+                        key={i}
                         artist={artist}
+                        index={i}
 
                     />
                 ))}
