@@ -118,19 +118,19 @@ const BrowseVocalNavbar: React.FC = () => {
     return (
         <div className={`  `}>
             <MaxWidth>
-                <div className={``}>
+                <div className={` py-7 `}>
                     <div
                         className='flex items-center justify-between   z-50    mx-auto  '>
                         {/* Logo */}
-                        <Link href="/">
-                            <Image
-                                src="/images/logo/white-logo.svg"
-                                width={200}
-                                height={5000}
-                                alt="logo"
-                                className=" h-32 "
-                            />
-                        </Link>
+                         <Link href="/">
+                                                        <Image
+                                                            src="/images/logo/black-logo.png"
+                                                            width={200}
+                                                            height={5000}
+                                                            alt="logo"
+                                                            className="  "
+                                                        />
+                                                    </Link>
 
                         {/* Mobile Menu Button */}
                         <div className="lg:hidden">

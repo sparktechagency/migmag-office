@@ -192,7 +192,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                     <label htmlFor="id" className='text-white text-lg font-bold leading-6'>Submit your demo</label>
                                     <input
                                         id='link'
-                                        // placeholder="Instagram or TikTok"
+                                        placeholder="Send Us A Link"
                                         value={demoLink}
                                         onChange={(e) => setDemoLink(e.target.value)}
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'

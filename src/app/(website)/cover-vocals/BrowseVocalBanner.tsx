@@ -9,7 +9,7 @@ const BrowseVocalBanner: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-start gap-8">
           {/* Left Side */}
           <div className="text-white w-full lg:w-1/2">
-            <h1 className="text-4xl lg:text-6xl font-bold leading-tight lg:leading-[4.5rem] mb-6">
+            <h1 className="text-4xl btnTextColor lg:text-6xl font-bold leading-tight lg:leading-[4.5rem] mb-6">
               Cover Songs
             </h1>
             <p className="text-lg lg:text-xl font-medium leading-relaxed text-white/90 mb-8 max-w-lg">

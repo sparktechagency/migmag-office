@@ -86,7 +86,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
             <h1 className="text-white md:font-semibold text-xs md:text-xl w-[30%] ">
               ${artist.price}
             </h1>
-            <Link className = {` w-[30%] `}  href={`/hire-from/${artist.slug}`}>
+            <Link className={` w-[30%] `} href={`/hire-from/${artist.slug}`}>
               <button className="text-black btnColor md:px-4 md:py-2 py-1  text-xs px-2 rounded-md cursor-pointer">
                 Hire Now
               </button>
@@ -118,7 +118,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
 
             <div className="flex flex-col">
               <h3 className="text-white font-medium">{artist.name}</h3>
-              <p className="text-white text-sm underline">{artist.singer} • Songwriter</p>
+              <p className="text-white text-sm underline">{'Singer'} • Songwriter</p>
             </div>
           </div>
 
