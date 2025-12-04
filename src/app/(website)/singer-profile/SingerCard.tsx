@@ -43,7 +43,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
         <>
             <div>
                 {/* ----------- Desktop View ----------- */}
-                <div className={`hidden md:flex items-center p-4  py-6  transition-colors duration-200 gap-4 ${index % 2 == 0 ? "bg-[#201F1F]" : "bg-[#000000]"} `}>
+                <div className={`hidden md:flex items-center p-4  py-6  transition-colors duration-200 gap-4  rounded-md  border border-black  `}>
                     {/* Left */}
                     <div className="flex items-center gap-3 flex-1 min-w-0">
                         <Link href={`/singer-profile/${artist.slug}`}>
@@ -59,14 +59,14 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                             {/* Play Button */}
                             <button
                                 onClick={handlePlayTrack}
-                                className="flex items-center justify-center  text-white cursor-pointer "
+                                className="flex items-center justify-center  textColor cursor-pointer "
                             >
                                 ▶
                             </button>
 
                         </div>
                         <div className="truncate ">
-                            <h3 className="text-sm font-semibold text-white">
+                            <h3 className="text-sm font-semibold textColor">
                                 {artist.name}
                             </h3>
                             <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
@@ -77,13 +77,17 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                                 <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
                             </div>
                         </div>
+                            <p className={`text-sm textColor ml-[27%]  `} > {artist?.language} </p>
+                    </div>
+
+                    <div>
                     </div>
 
 
                     <div className="flex items-center gap-x-6 flex-1 justify-between min-w-0">
-                        <p className={`text-sm textColor w-[30%] `} > {artist?.language} </p>
+
                         <p className={`text-sm textColor w-[30%] `} > {artist?.gender} </p>
-                        <h1 className="text-white md:font-semibold text-xs md:text-xl w-[30%] ">
+                        <h1 className="textColor md:font-semibold text-xs  w-[30%] ">
                             ${artist.price}
                         </h1>
                         <Link className={` w-[30%] `} href={`/hire-from/${artist.slug}`}>
@@ -117,8 +121,8 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                         </Link>
 
                         <div className="flex flex-col">
-                            <h3 className="text-white font-medium">{artist.name}</h3>
-                            <p className="text-white text-sm underline">{artist.singer} • Songwriter</p>
+                            <h3 className="textColor font-medium">{artist.name}</h3>
+                            <p className="textColor text-sm underline">{artist.singer} • Songwriter</p>
                         </div>
                     </div>
 

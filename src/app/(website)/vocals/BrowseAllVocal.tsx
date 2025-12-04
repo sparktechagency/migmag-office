@@ -928,7 +928,7 @@ const BrowseAllVocal = () => {
                                         <p className={` w-[30%]  `} >{item.license?.name || "N/A"}</p>
                                         <p className={` w-[30%]  `} >{item.artist?.language || "N/A"}</p>
                                         <Link className={`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
-                                            <p className="text-sm text-white font-semibold">${item.price}</p>
+                                            <p className="text-sm textColor">${item.price}</p>
                                         </Link>
 
                                         <Link className={`w-[30%]`} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=0`}>
@@ -1347,7 +1347,7 @@ const BrowseAllVocal = () => {
                                                 {item?.artist?.name}
                                             </Link>{" "}
                                             <p className="text-[10px] text-white">
-                                                {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
+                                                {item?.artist?.gender} <span className="text-[10px] text-white">${item?.price}</span>
                                             </p>
                                         </div>
                                     </div>

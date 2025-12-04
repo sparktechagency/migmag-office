@@ -45,7 +45,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
         {/* ----------- Desktop View ----------- */}
         <div className={`hidden md:flex items-center p-4  py-6  transition-colors duration-200 gap-4 ${index % 2 == 0 ? "bg-[#201F1F]" : "bg-[#000000]"} `}>
           {/* Left */}
-          <div className="flex items-center gap-3 flex-1 min-w-0">
+          <div className="flex items-center gap-3 flex-1 ">
             <Link href={`/singer-profile/${artist.slug}`}>
               <Image
                 src={`${imgUrl}/${artist.profile}`}
@@ -65,25 +65,32 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
               </button>
 
             </div>
-            <div className="truncate ">
-              <h3 className="text-sm font-semibold text-white">
-                {artist.name}
-              </h3>
-              <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
-                <p className="textColor text-sm underline  truncate">
-                  {artist.singer}
-                </p>
-                <p className={`mt-0.5 textColor `} >•</p>
-                <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
+            <div className="truncate flex flex-row  ">
+              <div>
+                <h3 className="text-sm font-semibold text-white">
+                  {artist.name}
+                </h3>
+                <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
+                  <p className="textColor text-sm underline  truncate">
+                    {artist.singer}
+                  </p>
+                  <p className={`mt-0.5 textColor `} >•</p>
+                  <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
+                </div>
+                <div>
+
+                </div>
               </div>
+
             </div>
+            <p className={`text-sm textColor ml-[27%] `} > {artist?.language} </p>
           </div>
 
 
-          <div className="flex items-center gap-x-6 flex-1 justify-between min-w-0">
-            <p className={`text-sm textColor w-[30%] `} > {artist?.language} </p>
-            <p className={`text-sm textColor w-[30%] `} > {artist?.gender} </p>
-            <h1 className="text-white md:font-semibold text-xs md:text-xl w-[30%] ">
+          <div className="flex items-center gap-x-6 flex-1 justify-between ">
+
+            <p className={`text-sm textColor w-[50%] `} > {artist?.gender} </p>
+            <h1 className="textColor text-xs  w-[30%] ">
               ${artist.price}
             </h1>
             <Link className={` w-[30%] `} href={`/hire-from/${artist.slug}`}>

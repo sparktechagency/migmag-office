@@ -83,7 +83,7 @@ const LoginForm: React.FC = () => {
             Swal.fire({
                 position: "top",
                 icon: "error",
-                title: error?.data?.message || "Something went wrong",
+                title: error?.data?.message || "Invalid email or password.",
                 showConfirmButton: false,
                 timer: 2000,
             });
