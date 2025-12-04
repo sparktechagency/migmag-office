@@ -1462,7 +1462,7 @@ const BrowseAllVocal = () => {
                                         <p className={`w-[40%]`} > {item?.license?.name || "N/A"}</p>
                                         <p className={`w-[40%]`} >  {item?.artist?.language || "N/A"}</p>
                                         <Link className={` w-[40%] `} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
-                                            <p className="text-sm text-white font-semibold">${item?.price}</p>
+                                            <p className="text-sm">${item?.price}</p>
                                         </Link>
                                         <Link className={` w-[60%] `} href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
                                             <button className="px-4 py-1  cursor-pointer text-black btnColor text-sm font-medium rounded">

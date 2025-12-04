@@ -58,7 +58,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
     const songs = data?.data?.songs ?? [];
     const id: number | undefined = artistData?.id
 
-    console.log("sing is", songs)
+    console.log("artistData is", artistData)
 
 
 
@@ -216,6 +216,11 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                                         <p>Songwriter</p>
 
                                     </button>
+                                </div>
+
+                                <div>
+                                    <h1 className={` text-lg mt-4 lg:mt-2 lg:text-2xl headerColor leading-9 `} >Languages : </h1>
+                                    <p className={"mt-2"} > {artistData?.language} </p>
                                 </div>
 
                             </div>
