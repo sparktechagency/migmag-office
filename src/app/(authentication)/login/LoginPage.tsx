@@ -20,9 +20,14 @@ const LoginPage: React.FC = () => {
 
                     <div className="lg:w-1/2 px-4">
                         <div>
-                            <Link href={"/"}>
-                                <Image src={"/images/logo/white-logo.svg"} alt={"logo"} width={200} height={400}
-                                    className={` mb-10 `} />
+                            <Link href="/">
+                                <Image
+                                    src="/images/logo/black-logo.png"
+                                    width={200}
+                                    height={5000}
+                                    alt="logo"
+                                    className="  mb-10  "
+                                />
                             </Link>
                         </div>
                         <h1 className="text-5xl font-bold leading-tight">
