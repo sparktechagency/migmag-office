@@ -72,7 +72,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                 </h3>
                 <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
                   <p className="textColor text-sm underline  truncate">
-                    {artist.singer}
+                    {"Singer"}
                   </p>
                   <p className={`mt-0.5 textColor `} >•</p>
                   <p className={`textColor underline  mt-0.5  `} >Songwriter</p>

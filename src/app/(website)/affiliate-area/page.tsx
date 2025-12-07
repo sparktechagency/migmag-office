@@ -25,7 +25,7 @@ const Page: React.FC = () => {
             <Navbar></Navbar>
             <MaxWidth>
                 <div className={`my-8`}>
-                    <div className={`affiliationBgColor py-12 `}>
+                    <div className={`bg-[#FFBD00] py-12 `}>
                         <h1 className={` text-center lg:text-5xl text-2xl font-bold `}>Fill Out The Form & Apply.</h1>
                         <div className="max-w-4xl mx-auto flex justify-around items-center flex-wrap gap-6">
                             {features.map((feature, index) => (

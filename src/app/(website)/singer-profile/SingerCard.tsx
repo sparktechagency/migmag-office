@@ -77,7 +77,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                                 <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
                             </div>
                         </div>
-                            <p className={`text-sm textColor ml-[27%]  `} > {artist?.language} </p>
+                        <p className={`text-sm textColor ml-[27%]  `} > {artist?.language} </p>
                     </div>
 
                     <div>
@@ -122,7 +122,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
 
                         <div className="flex flex-col">
                             <h3 className="textColor font-medium">{artist.name}</h3>
-                            <p className="textColor text-sm underline">{artist.singer} • Songwriter</p>
+                            <p className="textColor text-sm underline">{"Singer"} • Songwriter</p>
                         </div>
                     </div>
 
