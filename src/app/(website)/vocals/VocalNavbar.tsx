@@ -121,7 +121,7 @@ const VocalNavbar = () => {
                                     width={200}
                                     height={5000}
                                     alt="logo"
-                                    className="  "
+                                    className=" w-36 "
                                 />
                             </Link>
 

@@ -219,8 +219,8 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                                 </div>
 
                                 <div>
-                                    <h1 className={` text-lg mt-4 lg:mt-2 lg:text-2xl headerColor leading-9 `} >Languages : </h1>
-                                    <p className={"mt-2"} > {artistData?.language} </p>
+                                    <h1 className={` text-lg mt-4 lg:mt-2  headerColor leading-9  font-bold `} >Languages : </h1>
+                                    <p className={""} > {artistData?.language} </p>
                                 </div>
 
                             </div>
