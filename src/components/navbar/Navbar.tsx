@@ -140,15 +140,11 @@ const Navbar: React.FC = () => {
               <Image src={"/update-image/logo/tunem-white.png"} width={700} height={700} alt={"logo"} className={``} />
 
             </Link> */}
-            <Link href="/">
-                                            <Image
-                                                src="/update-image/logo/tunem-white.png"
-                                                width={200}
-                                                height={5000}
-                                                alt="logo"
-                                                className="  "
-                                            />
-                                        </Link>
+            <Link className='' href="/">
+                                        <Image src={"/update-image/logo/update-logo.svg"} width={700} height={700} alt={"logo"} className={` w-40 h-10 `} />
+            
+            
+                                    </Link>
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden cursor-pointer ">
