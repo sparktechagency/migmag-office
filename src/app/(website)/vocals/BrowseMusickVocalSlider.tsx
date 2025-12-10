@@ -83,7 +83,7 @@ export default function MusicSlider() {
 
   return (
     <>
-      <main className="mt-8 lg:mt-16">
+      <main className="mt-8 lg:mt-16 hidden md:block  ">
         <MaxWidth>
           {loading && <p className="text-center text-gray-400 mt-6">Loading...</p>}
           {error && <p className="text-center text-red-500 mt-6">{error}</p>}
@@ -187,7 +187,7 @@ export default function MusicSlider() {
               ))}
             </div>
           </div>
-{/* 
+          {/* 
           <div className="mt-4 md:mt-12">
             <Link href="/vocals">
               <button className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]">

@@ -5,7 +5,7 @@ import React from "react";
 
 const BrowseVocalMarque: React.FC = () => {
     return (
-        <div className="overflow-hidden whitespace-nowrap bg-[#FFBD00] my-11 py-3">
+        <div className="overflow-hidden whitespace-nowrap bg-[#FFBD00] my-11 py-3 md:block hidden ">
             <motion.div
                 className="inline-block text-xl font-semibold text-gray-200"
                 animate={{ x: ["100%", "-100%"] }}

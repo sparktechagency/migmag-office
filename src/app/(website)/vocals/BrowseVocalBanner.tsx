@@ -4,7 +4,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const BrowseVocalBanner = () => {
     return (
-        <div className=" lg:py-16">
+        <div className=" lg:py-16 md:block hidden  ">
             <MaxWidth>
                 <div className="flex flex-col lg:flex-row justify-between  ">
                     {/* Left Side */}

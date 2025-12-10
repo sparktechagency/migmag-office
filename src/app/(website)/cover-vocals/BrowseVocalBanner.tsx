@@ -5,7 +5,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const BrowseVocalBanner: React.FC = () => {
   return (
     <MaxWidth>
-      <div className="lg:py-10">
+      <div className="lg:py-10 md:block hidden ">
         <div className="flex flex-col lg:flex-row items-start gap-8">
           {/* Left Side */}
           <div className="text-white w-full lg:w-1/2">

@@ -78,7 +78,7 @@ const TopTenVocal: React.FC = () => {
     const imagePath = `${imgUrl}/${item.song_poster}`;
     return (
       <div key={item.id}>
-        <div className="border-b hover:bg-gray-100 flex flex-col lg:flex-row items-center justify-between gap-y-2 lg:gap-y-0 lg:py-2 py-3 px-10 my-2 rounded-lg max-w-[713px] transition-all duration-300 cursor-pointer">
+        <div className="border-b hover:bg-gray-100 flex flex-row lg:flex-row items-center justify-between gap-y-2 lg:gap-y-0 lg:py-2 py-3 px-10 my-2 rounded-lg max-w-[713px] transition-all duration-300 cursor-pointer">
           <h1 className="text-3xl headerColor">{index + 1}</h1>
 
           <Link href={`/music-details/${item.id}`}>
@@ -103,7 +103,7 @@ const TopTenVocal: React.FC = () => {
             </Link>
 
             <p className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
-              <Link className = {`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
+              <Link className={`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
                 {item.artist.name.length > 10 ? item.artist.name.slice(0, 10) + "..." : item.artist.name}
               </Link>
               <div className="flex justify-center items-center gap-x-3 text-xs ">
@@ -123,7 +123,7 @@ const TopTenVocal: React.FC = () => {
 
   return (
     <MaxWidth>
-      <div className="hidden md:block">
+      <div className="">
         <div className="mx-auto mb-10">
           <div className="border border-black" />
           <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">Top 10 Vocals</h2>

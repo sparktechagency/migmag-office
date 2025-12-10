@@ -71,7 +71,7 @@ export default function MusicSlider() {
     };
 
     return (
-        <main className="mt-8 lg:mt-20">
+        <main className="mt-8 lg:mt-20 hidden md:block ">
             <MaxWidth>
                 <h1 className="headerColor text-2xl lg:text-4xl font-semibold mx-auto mb-6">
                     Latest Trending Vocals

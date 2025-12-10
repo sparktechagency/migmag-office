@@ -101,7 +101,7 @@ const ApplayVocalistFrom: React.FC = () => {
 
 
                             <div className=' max-w-[572px] mt-9 '>
-                                <p className=' lg:text-3xl text-xl  text-[#FFBD00] font-semibold '>Apply to Become a
+                                <p className=' lg:text-3xl text-xl  text-[#FFBD00] font-semibold mb-6 '>Apply to Become a
                                     Vocalist at TuneM</p>
                                 <p className={`text-white`}>
                                     We’re looking for dedicated vocalists who are passionate about music and ready to
