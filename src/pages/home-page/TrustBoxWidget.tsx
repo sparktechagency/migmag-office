@@ -32,7 +32,7 @@ const TrustBoxWidget = () => {
                 href="https://www.trustpilot.com/review/www.tunem.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className = {`border-none`}
+                className={`border-none`}
             >
                 Trustpilot
             </a>
