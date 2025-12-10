@@ -21,8 +21,8 @@ const ApplayTune: React.FC = () => {
 
                     {/* Right side */}
                     <div className=" h-auto    " >
-                        <div className='max-w-[450px]'>
-                            <h1 className='text-white leading-9 lg:text-4xl text-2xl font-bold headerColor'>
+                        <div className='max-w-[570px]'>
+                            <h1 className='text-white leading-9  text-xl font-bold headerColor'>
                                 Become Part Of The TuneM Artist Squad
                             </h1>
                         </div>
@@ -37,7 +37,7 @@ const ApplayTune: React.FC = () => {
                             <span className='lg:text-lg textColor leading-6 font-thin'>
                                 We advertise your voice, match you with serious vocal projects, and guarantee payment upon approved delivery.
                             </span>
-                            <span className='lg:text-xl text-lg headerColor font-bold leading-6 my-2 block'>
+                            <span className='lg:text-xl text-lg headerColor font-bold leading-6 my-6 block'>
                                 At TuneM, we bring the work to you - so you can focus on what you do best.
                             </span>
                         </div>

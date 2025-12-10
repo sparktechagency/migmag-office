@@ -4,16 +4,16 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const DiscoverVocal: React.FC = () => {
     return (
-        <div  className='  mx-auto  '>
+        <div className='  mx-auto  '>
             <MaxWidth>
                 <div
-                    className=' flex lg:flex-row flex-col items-center justify-between relative  lg:gap-3'>
+                    className=' flex lg:flex-row flex-col items-center justify-between relative  lg:gap-8 space-y-10 '>
 
                     {/* left side  */}
                     <div className='   '>
                         <Image src={"/update-image/tuneM-Artist/banner/work-banner.png"}
-                               className=' object-cover rounded-lg block border w-full mx-auto lg:my-1 ' width={802} height={854}
-                               alt='....'/>
+                            className=' object-cover rounded-lg block border w-full mx-auto lg:my-1 ' width={802} height={854}
+                            alt='....' />
                     </div>
                     {/* right side  */}
                     <div className=''>
@@ -44,7 +44,7 @@ const DiscoverVocal: React.FC = () => {
                                 <div className=" transition duration-300 w-full ">
                                     <p className="headerColor  font-bold lg:text-xl mb-2">
                                         2. Receive Vocal Requests
-                                        </p>
+                                    </p>
                                     <p className="textColor   font-light  lg:text-lg leading-7">
                                         We’ll assign you vocal projects based on your voice and style — no need to look for work. Just focus on recording.
                                     </p>

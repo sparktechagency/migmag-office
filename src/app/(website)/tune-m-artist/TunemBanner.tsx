@@ -14,11 +14,20 @@ const TunemBanner = () => {
           <div className="flex flex-col lg:flex-row items-stretch">
             {/* Left side */}
             <div className="lg:w-[60%] lg:mt-14 space-y-4">
-              <div className="ml-[21%]">
-                <span>
-                  <Image src={"/update-image/logo/update-logo.svg"} width={700} height={700} alt={"logo"} className={` w-40 h-10 `} />
-                </span>
-                <h1 className="font-bold mt-2 text-3xl ml-2">For Artists</h1>
+              <div className="flex flex-col justify-center items-center ">
+                <div>
+                  <Image
+                    src="/update-image/logo/update-logo.svg"
+                    width={700}
+                    height={700}
+                    alt="logo"
+                    className="w-40 h-10"
+                  />
+                </div>
+
+                <div>
+                  <h1 className="font-bold mt-2 text-3xl">For Artists</h1>
+                </div>
               </div>
               <div className="lg:mt-16 text-center lg:text-start mb-6 lg:mb-0 px-6 ">
                 <h1 className="text-lg lg:text-3xl headerColor font-semibold">

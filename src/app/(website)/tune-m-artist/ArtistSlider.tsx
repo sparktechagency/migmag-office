@@ -35,7 +35,7 @@ const reviews: Review[] = [
 
 const ArtistSlider: React.FC = () => {
     return (
-        <div className="lg:mt-24 lg:mb-28 mx-auto">
+        <div className="lg:mt-24 mt-6 lg:mb-28 mx-auto">
             <MaxWidth>
                 <div className="lg:py-16">
                     <h2 className="lg:text-4xl text-2xl font-bold mb-6 headerColor lg:mb-12">

@@ -4,9 +4,9 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const ArtistLibraryBanner = () => {
     return (
-        <div className=' mx-auto mt-8 '>
+        <div className=' mx-auto mt-8 md:block hidden '>
             <MaxWidth>
-                <div className=' '>
+                <div className=' n '>
                     <div className='  flex flex-col lg:flex-row justify-between '>
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>

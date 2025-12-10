@@ -71,24 +71,24 @@ export default function MemberShip() {
                                     }`}
                             >
                                 Monthly
-                                {activeTab === "monthly" && (
+                                {/* {activeTab === "monthly" && (
                                     <span className="absolute -top-6 right-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full border">
                                         2 MONTHS FREE
                                     </span>
-                                )}
+                                )} */}
                             </button>
 
                             {/* Yearly Tab */}
                             <button
                                 onClick={() => setActiveTab("yearly")}
-                                className={`relative cursor-pointer px-6 py-2 text-sm font-medium rounded-full transition ${activeTab === "yearly"
+                                className={`relative cursor-pointer px-6 py-2 text-sm font-medium rounded-full   transition ${activeTab === "yearly"
                                     ? "bg-white shadow text-black"
                                     : "text-gray-500"
                                     }`}
                             >
                                 Yearly
                                 {activeTab === "yearly" && (
-                                    <span className="absolute -top-6 right-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full border">
+                                    <span className="absolute -top-6 right-2 bg-blue-500 text-white text-[10px]  py-0.5 w-[99%] rounded-full ">
                                         2 MONTHS FREE
                                     </span>
                                 )}
