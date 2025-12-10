@@ -58,7 +58,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
     const songs = data?.data?.songs ?? [];
     const id: number | undefined = artistData?.id
 
-    console.log("artistData is", artistData)
+
 
 
 

@@ -9,7 +9,6 @@ import { MusickPlayer } from "@/components/musick-player/MusickPlayer";
 export default function SingerList() {
     const { data } = useArtistListApiQuery(undefined);
     const artistData = data?.data?.data || [];
-    console.log("artistdat is ", artistData)
 
 
 

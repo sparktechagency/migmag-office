@@ -36,7 +36,7 @@ interface PaymentResponse {
 }
 
 export default function CheckoutForm({ clientSecret, songId, price, is_midifile }: CheckoutFormProps) {
-    console.log("is_midifile", is_midifile);
+
     const stripe = useStripe();
     const elements = useElements();
     const router = useRouter();
@@ -100,7 +100,6 @@ export default function CheckoutForm({ clientSecret, songId, price, is_midifile 
 
         } catch (err: unknown) {
             if (err instanceof Error) {
-                console.error(err);
                 toast.error(err.message);
                 setErrorMessage(err.message);
             } else {

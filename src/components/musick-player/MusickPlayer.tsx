@@ -44,7 +44,7 @@ export function MusickPlayer() {
         setIsPlaying(true);
         trigger(Number(currentTrack.id));
       } catch (err) {
-        console.log("Autoplay failed:", err);
+        return err;
       }
     };
 
@@ -98,20 +98,20 @@ export function MusickPlayer() {
 
 
   useEffect(() => {
-  function handleClickOutside(event: MouseEvent) {
-    if (playerRef.current && !playerRef.current.contains(event.target as Node)) {
-      hidePlayer(); // auto close
+    function handleClickOutside(event: MouseEvent) {
+      if (playerRef.current && !playerRef.current.contains(event.target as Node)) {
+        hidePlayer(); // auto close
+      }
     }
-  }
 
-  if (show) {
-    document.addEventListener("mousedown", handleClickOutside);
-  }
+    if (show) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [show, hidePlayer]);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [show, hidePlayer]);
 
 
 

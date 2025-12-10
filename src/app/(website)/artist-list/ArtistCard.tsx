@@ -26,7 +26,6 @@ interface ArtistCardProps {
 }
 
 const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ artist, index }) => {
-  console.log(" musick index is ", index)
   const player = usePlayerStore();
 
   const handlePlayTrack = () => {
