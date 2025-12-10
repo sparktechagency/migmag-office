@@ -89,6 +89,9 @@ const CartPage = () => {
         setTokenChecked(true);
     }, [router]);
 
+
+    // remove code 
+
     return (
         <div className="bg-[#f5fff8] min-h-screen">
             <MaxWidth>
