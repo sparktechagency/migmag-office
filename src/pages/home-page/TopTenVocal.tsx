@@ -102,7 +102,7 @@ const TopTenVocal: React.FC = () => {
               </h3>
             </Link>
 
-            <p className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
+            <div className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
               <Link className={`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
                 {item.artist.name.length > 10 ? item.artist.name.slice(0, 10) + "..." : item.artist.name}
               </Link>
@@ -110,7 +110,7 @@ const TopTenVocal: React.FC = () => {
                 <span  >{item?.license?.name}</span>
                 <span  >${item?.price}</span>
               </div>
-            </p>
+            </div>
           </div>
 
           <button className=" px-2 rounded-2xl text-xs py-1  text-black btnColor">
