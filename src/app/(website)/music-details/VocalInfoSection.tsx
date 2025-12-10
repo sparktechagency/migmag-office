@@ -22,7 +22,7 @@ const VocalInfoSection = ({ id }: { id: number }) => {
 
   const { data } = useSongDetailsQuery({ songId });
 
-  console.log("song details is", data?.data?.license?.name);
+
 
 
   return (

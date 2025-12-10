@@ -109,7 +109,6 @@ const RegisterForm = () => {
                 data?: { message?: string };
             };
 
-            console.log(error);
 
             Swal.fire({
                 position: "top",

@@ -25,7 +25,7 @@ const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
     const { data } = useArtistDetailsQuery({ slug });
 
 
-    console.log("hireform data is",data?.data);
+
 
 
 
