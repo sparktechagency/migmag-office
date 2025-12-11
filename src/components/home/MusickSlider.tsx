@@ -9,7 +9,6 @@ import { imgUrl } from '@/utility/img/imgUrl';
 import axios from "axios";
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 import { usePlayerStore } from '@/app/store/usePlayerStore';
-import { FaPlay } from 'react-icons/fa';
 
 interface Artist {
     name: string;
@@ -144,70 +143,7 @@ export default function MusicSlider() {
 
             </div>
 
-            <MaxWidth>
-                <div className=' md:hidden block   ' >
-                    <h1 className="headerColor text-2xl lg:text-4xl font-semibold mx-auto mb-6">
-                        Latest Trending Vocals
-                    </h1>
-                    <div className="    space-y-4  mt-8  ">
-                        {tracks.map((item, i) => (
-                            <div
-                                key={item?.id}
-                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
-                                    }`}
-                            >
-                                <div className="flex items-center justify-between w-full max-w-md p-3 border-b">
-                                    {/* Left Section */}
-                                    <div className="flex items-center gap-3">
-                                        {/* <span className="text-lg font-medium text-white ">{i + 1}</span> */}
-                                        <Link href={`/music-details/${item?.id}`}>
-                                            <Image
-                                                src={`${imgUrl}/${item?.song_poster}`}
-                                                alt={"fdsfsdadf"}
-                                                width={2000}
-                                                height={2000}
-                                                className="rounded w-16 h-16 "
-                                            />
-                                        </Link>
-                                        <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
-                                            <FaPlay
-                                                onClick={() =>
-                                                    player.setTrack({
-                                                        id: item.id,
-                                                        title: item.title,
-                                                        name: item.artist.name,
-                                                        song: `${imgUrl}/${item.song}`,
-                                                        song_poster: item.song_poster,
-                                                    })
-                                                }
-                                                size={28}
-                                                className="text-white cursor-pointer"
-                                            />
-                                        </button>
-                                        <div className="flex flex-col">
-                                            <Link className={"hover:underline text-white text-[10px] "} href={`/singer-profile/${item?.artist?.slug}`}>
-                                                {item?.artist?.name}
-                                            </Link>{" "}
-                                            <p className="text-[10px] text-white">
-                                                {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Right Section */}
-                                    <Link href={`/checkout?price=${item.price}&songId=${item.id}&isMiddy=${0}`}>
-                                        <button className="px-2 py-1  cursor-pointer text-black btnColor text-xs font-medium rounded">
-                                            Get Vocal
-                                        </button>
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                </div>
-            </MaxWidth>
-
+            {/* 
 
 
 
