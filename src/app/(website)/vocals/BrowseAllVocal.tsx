@@ -413,22 +413,22 @@ const BrowseAllVocal = () => {
         <>
             <MaxWidth>
                 <div className="  mx-auto   ">
-                    <div className=' mt-12 mb-6 '>
+                    <div className=' mt-12 mb-6 md:block hidden '>
                         <div className=' border border-white '></div>
                     </div>
                     <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center lg:mb-11 mb-4 lg:gap-14'>
                         {/* Title Section */}
                         <div className='flex-1 w-full'>
-                            <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
+                            <h1 className='lg:text-3xl text-2xl  font-bold leading-9 text-white'>
                                 <span className='text-[#818080]'>Vocals</span>
                             </h1>
                         </div>
 
                         {/* Clear Filters Button */}
-                        <div className='w-full md:w-auto text-center mt-6 md:text-right'>
+                        <div className='w-full md:w-auto text-center lg:mt-6 md:text-right'>
                             <button
                                 onClick={clearSearch}
-                                className='text-white text-lg underline mt-12 md:mt-0 cursor-pointer'
+                                className='text-white lg:text-lg underline lg:mt-12 md:mt-0 cursor-pointer'
                             >
                                 Clear filters
                             </button>
