@@ -47,6 +47,7 @@ const ApplayVocalistFrom: React.FC = () => {
         formData.append('social_link', socialLink);
         formData.append('referral', referral);
         formData.append('about', about);
+        formData.append('submit_demo', demoLink);
 
         genree.forEach((genre) => {
             formData.append('genres[]', JSON.stringify(genre));
@@ -60,6 +61,7 @@ const ApplayVocalistFrom: React.FC = () => {
 
         try {
             const res = await applayArtist(formData).unwrap();
+
             if (res) {
                 setName('');
                 setEmail('');
@@ -187,7 +189,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                     />
                                 </div>
 
-                                {/* demo line */}
+                                {/* demo link */}
                                 <div className='flex flex-col mt-5'>
                                     <label htmlFor="id" className='text-white text-lg font-bold leading-6'>Submit your demo</label>
                                     <input
