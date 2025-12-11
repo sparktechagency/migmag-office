@@ -110,31 +110,42 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
         </div>
 
         {/* ----------- Mobile View ----------- */}
+
+
         <div className="md:hidden flex items-center justify-between p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
           <div className="flex items-center space-x-4">
-            <Link href={`/singer-profile/${artist.slug}`}>
-              <Image
-                src={`${imgUrl}/${artist.profile}`}
-                alt={artist.name}
-                width={50}
-                height={50}
-                className="rounded-full w-12 h-12"
-              />
-            </Link>
 
+            {/* IMAGE + CENTER PLAY BUTTON */}
+            <div className="relative w-12 h-12">
+              <Link href={`/singer-profile/${artist.slug}`}>
+                <Image
+                  src={`${imgUrl}/${artist.profile}`}
+                  alt={artist.name}
+                  width={50}
+                  height={50}
+                  className="rounded-full w-12 h-12 object-cover"
+                />
+              </Link>
+
+              {/* Play Button Centered */}
+              <button
+                onClick={handlePlayTrack}
+                className="absolute inset-0 m-auto w-8 h-8 flex items-center justify-center 
+                   rounded-full  text-white"
+              >
+                ▶
+              </button>
+            </div>
+
+            {/* TEXT */}
             <div className="flex flex-col">
               <h3 className="text-white font-medium">{artist.name}</h3>
               <p className="text-white text-sm underline">{'Singer'} • Songwriter</p>
             </div>
           </div>
 
+          {/* RIGHT ARROW */}
           <div className="flex items-center gap-4">
-            <button
-              onClick={handlePlayTrack}
-              className="w-8 h-8 flex items-center justify-center rounded-full btnColor text-black"
-            >
-              ▶
-            </button>
             <Link href={`/hire-from/${artist.slug}`}>
               <svg
                 className="text-gray-400 w-5 h-5"
@@ -152,6 +163,8 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
             </Link>
           </div>
         </div>
+
+
       </div>
 
     </>
