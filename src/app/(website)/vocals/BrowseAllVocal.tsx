@@ -872,7 +872,7 @@ const BrowseAllVocal = () => {
 
                                     {/* LEFT: Cover + Play + Title */}
                                     <div className="flex items-center gap-3 w-full md:max-w-[350px]">
-
+                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
                                         {/* Image */}
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
                                             <Link href={`/music-details/${item.id}`}>
@@ -1307,7 +1307,7 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-                    <div className="    space-y-4 block md:hidden mt-8  ">
+                    <div className=" space-y-4 block md:hidden mt-8  ">
                         {tracks.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item?.id}
@@ -1317,7 +1317,7 @@ const BrowseAllVocal = () => {
                                 <div className="flex items-center justify-between w-full max-w-md p-2 border-b">
                                     {/* Left Section */}
                                     <div className="flex items-center gap-1">
-                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
+
                                         <Link href={`/music-details/${item?.id}`}>
                                             <Image
                                                 src={`${imgUrl}/${item?.song_poster}`}

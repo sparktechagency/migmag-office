@@ -1419,7 +1419,8 @@ const BrowseAllVocal = () => {
                             >
                                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
                                     {/* Left: Cover and Play */}
-                                    <div className="flex items-center gap-1 w-full md:max-w-[400px]">
+                                    <div className="flex items-center gap-x-3 w-full md:max-w-[400px]">
+                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
                                             <Link href={`/music-details/${item?.id}`}>
                                                 <Image
@@ -1494,7 +1495,7 @@ const BrowseAllVocal = () => {
                                 <div className="flex items-center justify-between w-full max-w-md p-3 border-b">
                                     {/* Left Section */}
                                     <div className="flex items-center gap-3">
-                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
+                                        {/* <span className="text-lg font-medium text-white ">{i + 1}</span> */}
                                         <Link href={`/music-details/${item?.id}`}>
                                             <Image
                                                 src={`${imgUrl}/${item?.song_poster}`}
