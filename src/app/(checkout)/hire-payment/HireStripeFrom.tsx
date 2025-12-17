@@ -20,12 +20,13 @@ export default function HireStripeFrom() {
     const artistParams = searchParams?.get('artistId');
     const priceParams = searchParams?.get('price');
     const artistSlug = searchParams?.get('slug');
-    
+    const middyParams = searchParams?.get('isMiddy');
 
     // const price: number | null = priceParam ? parseFloat(priceParam) : null;
     const artistId: number | null = artistParams ? Number(artistParams) : null;
     const price: number | null = priceParams ? Number(priceParams) : null;
     const slug: string | null = artistSlug ? artistSlug : null;
+    const middy: number | undefined = middyParams ? parseInt(middyParams) : undefined
 
     useEffect(() => {
         const createIntent = async () => {
@@ -63,7 +64,7 @@ export default function HireStripeFrom() {
         <div>
             {clientSecret ? (
                 <Elements options={options} stripe={stripePromise}>
-                    <HireCheckout clientSecret={clientSecret} artistId={artistId} slug={slug} />
+                    <HireCheckout clientSecret={clientSecret} artistId={artistId} slug={slug} is_midifile={middy} />
                 </Elements>
             ) : (
                 <p>Loading payment...</p>

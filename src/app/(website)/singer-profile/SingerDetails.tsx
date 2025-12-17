@@ -249,7 +249,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                             </div>
 
                             <div>
-                                <Link href={"/hire"}>
+                                <Link href={`/hire-from/${artistData?.slug}`}>
                                     <button
                                         className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
                                         <span>
