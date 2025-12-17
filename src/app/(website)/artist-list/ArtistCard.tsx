@@ -66,15 +66,17 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
             </div>
             <div className="truncate flex flex-row  ">
               <div>
-                <h3 className="text-sm font-semibold text-white">
-                  {artist.name}
-                </h3>
+                <Link href={`/singer-profile/${artist.slug}`} >
+                  <h3 className="text-sm font-semibold text-white">
+                    {artist.name}
+                  </h3>
+                </Link>
                 <div className={`flex flex-row item-center gap-x-2 text-xs   `} >
-                  <p className="textColor text-sm underline  truncate">
+                  <p className="text-sm font-semibold text-white">
                     {"Singer"}
                   </p>
                   <p className={`mt-0.5 textColor `} >•</p>
-                  <p className={`textColor underline  mt-0.5  `} >Songwriter</p>
+                  <p className={`text-sm font-semibold text-white    `} >Songwriter</p>
                 </div>
                 <div>
 
@@ -139,8 +141,10 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
 
             {/* TEXT */}
             <div className="flex flex-col">
-              <h3 className="text-white font-medium">{artist.name}</h3>
-              <p className="text-white text-sm underline">{'Singer'} • Songwriter</p>
+              <Link href={`/singer-profile/${artist.slug}`} >
+                <h3 className="text-white font-medium">{artist.name}</h3>
+              </Link>
+              <p className="text-white font-medium">{'Singer'} • Songwriter</p>
             </div>
           </div>
 

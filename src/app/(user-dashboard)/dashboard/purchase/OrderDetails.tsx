@@ -1,5 +1,5 @@
 "use client";
-
+import JSZip from "jszip";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import Image from "next/image";
@@ -19,42 +19,118 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
   const { data, error, isLoading } = useOrderDetailsQuery(orderId);
   const songs: OrderItemDetails[] = data?.data;
 
+  console.log("songs is", songs)
+
   const player = usePlayerStore();
 
-  const handleDownload = async (path: string, filename: string) => {
-    try {
-      const response = await fetch(`/songs/${path}`);
-      if (!response.ok) throw new Error(`Failed to fetch file: ${response.status}`);
+  // const handleDownload = async (path: string, filename: string) => {
+  //   try {
+  //     const response = await fetch(`/songs/${path}`);
+  //     if (!response.ok) throw new Error(`Failed to fetch file: ${response.status}`);
 
-      const blob = await response.blob();
+  //     const blob = await response.blob();
+  //     const link = document.createElement("a");
+  //     link.href = URL.createObjectURL(blob);
+  //     link.download = filename || "audio.mp3";
+  //     link.click();
+
+  //     setTimeout(() => URL.revokeObjectURL(link.href), 100);
+  //   } catch (error) {
+  //     console.error("Download failed:", error);
+  //   }
+  // };
+
+
+  const handleDownloadFolder = async (
+    folderName: string,
+    songs: { path: string; filename: string }[]
+  ) => {
+    try {
+      const zip = new JSZip();
+      const folder = zip.folder(folderName);
+      if (!folder) return;
+
+      for (const song of songs) {
+        if (!song?.path) {
+          console.error("Invalid song path:", song);
+          continue;
+        }
+
+        const res = await fetch(`/songs/${song.path}`);
+        if (!res.ok) throw new Error(`Failed: ${song.path}`);
+
+        const blob = await res.blob();
+        folder.file(song.filename, blob);
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+
       const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = filename || "audio.mp3";
+      link.href = URL.createObjectURL(zipBlob);
+      link.download = `${folderName}.zip`;
       link.click();
 
-      setTimeout(() => URL.revokeObjectURL(link.href), 100);
+      setTimeout(() => URL.revokeObjectURL(link.href), 200);
     } catch (error) {
-      console.error("Download failed:", error);
+      console.error("Folder download failed:", error);
     }
   };
 
-  const handleMidyDownload = async (path: string, filename: string) => {
+  const handleMidyDownload = async (
+    folderName: string,
+    songs: { path: string; filename: string }[]
+  ) => {
     try {
-      const response = await fetch(`/songs/${path}`);
-      if (!response.ok) throw new Error(`Failed to fetch file: ${response.status}`);
+      const zip = new JSZip();
+      const folder = zip.folder(folderName);
+      if (!folder) return;
 
-      const blob = await response.blob();
+      for (const song of songs) {
+        if (!song?.path) {
+          console.error("Invalid song path:", song);
+          continue;
+        }
+
+        const res = await fetch(`/songs/${song.path}`);
+        if (!res.ok) throw new Error(`Failed: ${song.path}`);
+
+        const blob = await res.blob();
+        folder.file(song.filename, blob);
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+
       const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = filename || "audio.mp3";
+      link.href = URL.createObjectURL(zipBlob);
+      link.download = `${folderName}.zip`;
       link.click();
 
-      setTimeout(() => URL.revokeObjectURL(link.href), 100);
+      setTimeout(() => URL.revokeObjectURL(link.href), 200);
     } catch (error) {
-      console.error("Download failed:", error);
+      console.error("Folder download failed:", error);
     }
   };
 
+
+
+
+
+  // const handleMidyDownload = async (path: string, filename: string) => {
+  //   try {
+  //     const response = await fetch(`/songs/${path}`);
+  //     if (!response.ok) throw new Error(`Failed to fetch file: ${response.status}`);
+
+  //     const blob = await response.blob();
+  //     const link = document.createElement("a");
+  //     link.href = URL.createObjectURL(blob);
+  //     link.download = filename || "audio.mp3";
+  //     link.click();
+
+  //     setTimeout(() => URL.revokeObjectURL(link.href), 100);
+  //   } catch (error) {
+  //     console.error("Download failed:", error);
+  //   }
+  // };
 
 
 
@@ -150,14 +226,19 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
                 </td>
 
                 {/* Download */}
-                <td className="px-4 py-2">
+                <td className={`px-6`} >
                   <button
                     onClick={() =>
-                      handleDownload(item.song?.song, `${item.song?.title}.mp3`)
+                      handleDownloadFolder(`${item.song?.title}`, [
+                        {
+                          path: item.song?.song,        // must be string
+                          filename: `${item.song?.title}.mp3`,
+                        },
+                      ])
                     }
                     className="w-8 h-8 flex items-center justify-center rounded-full btnColor transition"
                   >
-                    <Download className="w-4 h-4 text-black cursor-pointer " />
+                    <Download className="w-4 h-4 text-black cursor-pointer" />
                   </button>
                 </td>
                 {/* midi download  */}
@@ -166,7 +247,12 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
                     <td className="px-4 py-2">
                       <button
                         onClick={() =>
-                          handleMidyDownload(item.song?.midi_file, `${item.song?.title}.mp3`)
+                          handleMidyDownload(`${item.song?.title}`, [
+                            {
+                              path: item.song?.midi_file,        // must be string
+                              filename: `${item.song?.title}.mp3`,
+                            },
+                          ])
                         }
                         className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer transition"
                       >

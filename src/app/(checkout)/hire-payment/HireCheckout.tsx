@@ -21,10 +21,11 @@ import Swal from "sweetalert2";
 type CheckoutFormProps = {
     clientSecret: string;
     artistId: number | null;
-    slug: string | null
+    slug: string | null;
+    is_midifile?: number;
 };
 
-export default function HireCheckout({ clientSecret, artistId, slug }: CheckoutFormProps) {
+export default function HireCheckout({ clientSecret, artistId, slug, is_midifile }: CheckoutFormProps) {
 
     const stripe = useStripe();
     const elements = useElements();
@@ -47,7 +48,8 @@ export default function HireCheckout({ clientSecret, artistId, slug }: CheckoutF
 
     const payload = {
         order_type: "Custom",
-        payment_method: "card"
+        payment_method: "card",
+        is_midy_file: is_midifile
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
