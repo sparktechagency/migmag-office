@@ -70,6 +70,9 @@ export interface Song {
   license: License;
   type: Type;
   midi_file: string;
+  web_vocals: string;
+  dry_vocals: string;
+  lyrics: string
 }
 
 export interface Order {
