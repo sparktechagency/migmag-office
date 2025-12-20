@@ -123,16 +123,17 @@ const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
                     {/* FAQ Accordion */}
                     <div className="mt-6 space-y-2 ">
                         {[
-                            "What do I need to provide the artist?",
-                            "Can I hire a singer for cover vocals?",
-                            "What will I get?",
-                        ].map((q, i) => (
+                            { question: "What do I need to provide the aritst?", answer: "Once payment is completed, submit your music track and vocal guide, and send the lyrics to support@tunem.com. If lyrics are ordered, only the music track is required." },
+                            { question: "Can I hire a singer for cover vocals?", answer: "You'll receive 3 high-quality vocal takes recorded by the singer. You can then approve the delivery or request a free revision, ensuring you're 100% satisfied." },
+                            { question: "What will I get?", answer: "You will receive the final audio files along with any revisions included in your package." },
+                            { question: "How long will it take to get my song?", answer: "Delivery time depends on the complexity, but typically it takes 3-7 business days." }, // <-- new question
+                        ].map((item, i) => (
                             <div key={i} className="border-b">
                                 <button
                                     className="flex justify-between items-center w-full py-3 text-left"
                                     onClick={() => toggleFAQ(i)}
                                 >
-                                    <span className="text-sm font-medium">{q}</span>
+                                    <span className="text-sm font-medium">{item.question}</span>
                                     <ChevronDown
                                         className={`w-4 h-4 cursor-pointer transition-transform ${openFAQ === i ? "rotate-180" : ""
                                             }`}
@@ -140,7 +141,7 @@ const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
                                 </button>
                                 {openFAQ === i && (
                                     <p className="text-sm text-gray-500 pb-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        {item.answer}
                                     </p>
                                 )}
                             </div>
