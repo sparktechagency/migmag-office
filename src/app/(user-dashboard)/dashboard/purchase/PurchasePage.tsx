@@ -49,10 +49,11 @@ const PurchasePage: React.FC = () => {
                     <table className="min-w-full text-sm text-left text-white">
                         <thead className="bg-gray-900 text-white">
                             <tr>
+                                <th className="px-4 py-3">Order #</th>
                                 <th className="px-4 py-3">Full Name</th>
                                 <th className="px-4 py-3">Email</th>
                                 <th className="px-4 py-3">Location</th>
-                                <th className="px-4 py-3">Order #</th>
+                                {/* <th className="px-4 py-3">Artist Id</th> */}
                                 <th className="px-4 py-3">Total</th>
                                 <th className="px-4 py-3">Status</th>
                                 <th className="px-4 py-3">Action</th>
@@ -61,10 +62,11 @@ const PurchasePage: React.FC = () => {
                         <tbody className="bg-gray-800 divide-y divide-gray-700">
                             {orderData.map((order, index) => (
                                 <tr key={order.id} className={index % 2 === 0 ? "bg-black" : ""}>
+                                    <td className="px-4 py-2">{order.order_number}</td>
                                     <td className="px-4 py-2">{order.user.full_name || "N/A"}</td>
                                     <td className="px-4 py-2">{order.user.email || "N/A"}</td>
                                     <td className="px-4 py-2">{order.user.location || "N/A"}</td>
-                                    <td className="px-4 py-2">{order.order_number}</td>
+                                    {/* <td className="px-4 py-2">{order.user?.artist_id}</td> */}
                                     <td className="px-4 py-2">${parseFloat(order.total_amount).toFixed(2)}</td>
                                     <td className="px-4 py-2 capitalize">{order.status}</td>
                                     <td className="px-4 py-2">

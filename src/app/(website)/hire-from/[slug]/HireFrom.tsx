@@ -58,15 +58,17 @@ const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
 
                     {/* Artist Info */}
                     <div className="flex items-center gap-3 mb-6 ">
-                        <div className={" w-24 h-24 rounded-full flex item-center justify-center "} >
+                        <div className={"flex item-center justify-center "} >
                             <Link href={`/singer-profile/${data?.data?.artist?.slug}`}>
-                                <Image
-                                    src={`${imgUrl}/${data?.data?.artist?.profile}`}
-                                    alt="Rayne"
-                                    width={2000}
-                                    height={2000}
-                                    className="rounded-full  w-24 h-24 "
-                                />
+                                <div className="w-24 h-24 rounded-full overflow-hidden">
+                                    <Image
+                                        src={`${imgUrl}/${data?.data?.artist?.profile}`}
+                                        alt="Rayne"
+                                        width={2000}
+                                        height={2000}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
                             </Link>
                         </div>
                         <div>
@@ -184,22 +186,40 @@ const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
 
                     {/* Includes */}
                     <div className="flex gap-2 flex-wrap mb-6">
-                        <span className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+                        <span className="relative group px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full cursor-pointer">
                             3 Vocal Takes
+
+                            <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 bg-gray-900 text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 ransition-opacity duration-200 z-50">
+                                The artist will record 3 high-quality vocal takes, with up to 180 seconds of recording time, delivered within 7 days.
+                            </span>
                         </span>
 
-                        <span className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+
+
+                        <span className="relative group px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full cursor-pointer">
                             Commercial Use
+
+                            <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 bg-gray-900 text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 ransition-opacity duration-200 z-50">
+                                Apply the vocals to your track and enjoy full ownership of the earnings.
+                                Unlimited Revisions - After the initial delivery, the artist is able to make minor changes to the recording.
+                            </span>
                         </span>
 
-                        <span className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+                        <span className="relative group px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full cursor-pointer">
                             Unlimited Revisions
+
+                            <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 bg-gray-900 text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 ransition-opacity duration-200 z-50">
+                                After the initial delivery, the artist is able to make minor changes to the recording.
+                            </span>
                         </span>
                         {
                             lyricsChecked && (
-                                <span className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
-
+                                <span className="relative group px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full cursor-pointer">
                                     Lyrics
+
+                                    <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 bg-gray-900 text-white text-xs px-3 py-2 rounded-md opacity-0 group-hover:opacity-100 ransition-opacity duration-200 z-50">
+                                        The artist will write the lyrics and vocal melody for your song.
+                                    </span>
                                 </span>
                             )
                         }

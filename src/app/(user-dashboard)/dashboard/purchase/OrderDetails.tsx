@@ -9,6 +9,7 @@ import { imgUrl } from "@/utility/img/imgUrl";
 import { OrderItemDetails } from "@/utility/type/orderType";
 import { MusickPlayer } from "@/components/musick-player/MusickPlayer";
 import { usePlayerStore } from "@/app/store/usePlayerStore";
+import Link from "next/link";
 
 interface OrderDetailsProps {
   orderId: number | string;
@@ -38,9 +39,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
       }
 
       if (song?.midi_file) {
-        const midiPaths = JSON.parse(song.midi_file);
-        const midiArray = Array.isArray(midiPaths) ? midiPaths : [midiPaths];
-        midiArray.forEach((path: string, i: number) => {
+        (JSON.parse(song.midi_file) as string[]).forEach((path: string, i: number) => {
           files.push({
             path,
             filename: `${song.title}_midi_${i + 1}.mid`,
@@ -49,9 +48,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
       }
 
       if (song?.web_vocals) {
-        const vocalPaths = JSON.parse(song.web_vocals);
-        const vocalArray = Array.isArray(vocalPaths) ? vocalPaths : [vocalPaths];
-        vocalArray.forEach((path: string, i: number) => {
+        (JSON.parse(song.web_vocals) as string[]).forEach((path: string, i: number) => {
           files.push({
             path,
             filename: `${song.title}_web_vocal_${i + 1}.mp3`,
@@ -60,9 +57,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
       }
 
       if (song?.dry_vocals) {
-        const dryPaths = JSON.parse(song.dry_vocals);
-        const dryArray = Array.isArray(dryPaths) ? dryPaths : [dryPaths];
-        dryArray.forEach((path: string, i: number) => {
+        (JSON.parse(song.dry_vocals) as string[]).forEach((path: string, i: number) => {
           files.push({
             path,
             filename: `${song.title}_dry_vocal_${i + 1}.mp3`,
@@ -170,6 +165,9 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
                     </span>
                   )}
                 </td>
+
+                <td className="px-4 py-2 text-center">{item.is_midifile == 1 ? <Link target="_blank" href={`${imgUrl}/${item?.song?.lyrics}`} >Lyrics</Link> : ""}</td>
+
 
                 {/* Download All */}
                 <td className="px-6">
