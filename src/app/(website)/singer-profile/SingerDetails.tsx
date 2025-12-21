@@ -1,7 +1,7 @@
 "use client"
 
 
-import React, { useState, Fragment, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -187,13 +187,13 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                     <div>
                         <div className=' flex flex-col lg:flex-row items-center lg:gap-x-10 '>
                             {/* image  */}
-                            <div className="w-40 h-40">
+                            <div className="w-36 h-36 mx-auto rounded-full overflow-hidden">
                                 <Image
                                     src={`${imgUrl}/${artistData?.profile}`}
-                                    className="mx-auto w-36 h-36  rounded-[100%]   "
-                                    width={160} // should match w-40 (40*4)
-                                    height={160} // should match h-40
                                     alt="Singer Image"
+                                    width={144}
+                                    height={144}
+                                    className="w-full h-full object-cover"
                                 />
                             </div>
                             {/* description  */}
@@ -329,9 +329,9 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                                     {/* Right: Price and Button */}
                                     <div
                                         className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                                        <Link href="/checkout">
+                                        <Link className={`cursor-pointer`} href={`/checkout?price=${item?.price}&songId=${id}&isMiddy=0`}>
                                             <button
-                                                className="btnColor text-black text-sm font-semibold px-4 py-1 rounded">
+                                                className="btnColor cursor-pointer text-black text-sm font-semibold px-4 py-1 rounded">
                                                 ${item.price || 0}
                                             </button>
                                         </Link>
