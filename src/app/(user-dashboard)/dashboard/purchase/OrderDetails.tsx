@@ -23,63 +23,89 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
   const player = usePlayerStore();
 
   // ===================== DOWNLOAD ALL FILES =====================
-  const handleDownloadAllFiles = async (folderName: string, song: OrderItemDetails["song"]) => {
+  const handleDownloadAllFiles = async (
+    folderName: string,
+    song: OrderItemDetails["song"]
+  ) => {
     try {
       const zip = new JSZip();
-      const folder = zip.folder(folderName);
-      if (!folder) return;
 
-      const files: { path: string; filename: string }[] = [];
+      // main song folder
+      const mainFolder = zip.folder(folderName);
+      if (!mainFolder) return;
 
-      if (song?.song) {
-        files.push({
-          path: song.song, // 👈 NO FULL URL
-          filename: `${song.title}.mp3`,
-        });
-      }
+      // sub folders
+      const midiFolder = mainFolder.folder("midi_files");
+      const webVocalFolder = mainFolder.folder("web_vocals");
+      const dryVocalFolder = mainFolder.folder("dry_vocals");
 
-      if (song?.midi_file) {
-        (JSON.parse(song.midi_file) as string[]).forEach((path: string, i: number) => {
-          files.push({
-            path,
-            filename: `${song.title}_midi_${i + 1}.mid`,
-          });
-        });
-      }
-
-      if (song?.web_vocals) {
-        (JSON.parse(song.web_vocals) as string[]).forEach((path: string, i: number) => {
-          files.push({
-            path,
-            filename: `${song.title}_web_vocal_${i + 1}.mp3`,
-          });
-        });
-      }
-
-      if (song?.dry_vocals) {
-        (JSON.parse(song.dry_vocals) as string[]).forEach((path: string, i: number) => {
-          files.push({
-            path,
-            filename: `${song.title}_dry_vocal_${i + 1}.mp3`,
-          });
-        });
-      }
-
-      for (const file of files) {
-        const res = await fetch(`/songs/${file.path}`); // ✅ PROXY
-        if (!res.ok) throw new Error(`Failed: ${file.path}`);
+      // helper function
+      const fetchAndAdd = async (
+        folder: JSZip | null,
+        path: string,
+        filename: string
+      ) => {
+        if (!folder) return;
+        const res = await fetch(`/songs/${path}`); // ✅ proxy
+        if (!res.ok) throw new Error(`Failed: ${path}`);
         const blob = await res.blob();
-        folder.file(file.filename, blob);
+        folder.file(filename, blob);
+      };
+
+      // 🎵 main song
+      if (song?.song) {
+        await fetchAndAdd(
+          mainFolder,
+          song.song,
+          `${song.title}.mp3`
+        );
       }
 
+      // 🎹 midi files
+      if (song?.midi_file) {
+        const midiFiles = JSON.parse(song.midi_file) as string[];
+        for (let i = 0; i < midiFiles.length; i++) {
+          await fetchAndAdd(
+            midiFolder,
+            midiFiles[i],
+            `${song.title}_midi_${i + 1}.mid`
+          );
+        }
+      }
+
+      // 🎤 web vocals
+      if (song?.web_vocals) {
+        const webVocals = JSON.parse(song.web_vocals) as string[];
+        for (let i = 0; i < webVocals.length; i++) {
+          await fetchAndAdd(
+            webVocalFolder,
+            webVocals[i],
+            `${song.title}_web_vocal_${i + 1}.mp3`
+          );
+        }
+      }
+
+      // 🎧 dry vocals
+      if (song?.dry_vocals) {
+        const dryVocals = JSON.parse(song.dry_vocals) as string[];
+        for (let i = 0; i < dryVocals.length; i++) {
+          await fetchAndAdd(
+            dryVocalFolder,
+            dryVocals[i],
+            `${song.title}_dry_vocal_${i + 1}.mp3`
+          );
+        }
+      }
+
+      // 📦 generate zip
       const zipBlob = await zip.generateAsync({ type: "blob" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(zipBlob);
       link.download = `${folderName}.zip`;
       link.click();
       URL.revokeObjectURL(link.href);
-    } catch (err) {
-      console.error("Folder download failed:", err);
+    } catch (error) {
+      console.error("Folder download failed:", error);
     }
   };
 
