@@ -70,6 +70,7 @@ const CartPage = () => {
     const handleCheckout = () => {
         if (cart.length === 0) return alert("Cart is empty!");
         router.push(`/cart-payment?total=${total}`);
+        // `/checkout?price=${data?.data?.price}&songId=${data?.data?.id}&isMiddy=${0}`
     };
 
 

@@ -71,6 +71,8 @@ const MusickDetails = ({ id }: { id: string }) => {
 
 
 
+
+
     const handleAddToWishlist = async () => {
         try {
             const res = await addWishList({ songId }).unwrap();

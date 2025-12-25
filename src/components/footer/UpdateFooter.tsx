@@ -203,41 +203,41 @@ const UpdateFooter: React.FC = () => {
                             priority // optional: preload if this image is above the fold
                         />
                     </div> */}
-                    <div className="max-w-xl mx-auto bg-white flex flex-wrap item-center gap-x-2  ">
+                    <div className="max-w-lg mx-auto bg-white flex flex-wrap item-center gap-x-2  ">
                         <Image
                             src="/images/footer/paypal.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20  " // center the image horizontally
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16  " // center the image horizontally
                         />
                         <Image
                             src="/images/footer/master-card.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20 "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16 "
                         />
                         <Image
                             src="/images/footer/visa.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover  w-20 h-20 "
+                            className="mx-auto object-cover  lg:w-20 lg:h-20 w-16 h-16 "
                         />
                         <Image
                             src="/images/footer/apple-pay.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20 "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16 "
                         />
                         <Image
                             src="/images/footer/google-pay.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20  "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16  "
                         />
                     </div>
 
