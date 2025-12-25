@@ -78,8 +78,8 @@ const TopTenVocal: React.FC = () => {
     const imagePath = `${imgUrl}/${item.song_poster}`;
     return (
       <div key={item.id}>
-        <div className="border-b hover:bg-gray-100 flex flex-row lg:flex-row items-center justify-between gap-y-2 lg:gap-y-0 lg:py-2 py-3 px-10 my-2 rounded-lg max-w-[713px] transition-all duration-300 cursor-pointer">
-          <h1 className="text-3xl headerColor">{index + 1}</h1>
+        <div className="border-b hover:bg-gray-100 flex flex-row lg:flex-row items-center justify-between gap-y-2 lg:gap-y-0 lg:py-2 py-3 lg:px-10 px-2 my-2 rounded-lg lg:max-w-[713px] w-full  transition-all duration-300 cursor-pointer">
+          <h1 className="lg:text-3xl text-xl headerColor">{index + 1}</h1>
 
           <Link href={`/music-details/${item.id}`}>
             <Image
@@ -87,12 +87,12 @@ const TopTenVocal: React.FC = () => {
               alt={item.title}
               width={100}
               height={100}
-              className="w-20 h-20 rounded-xl"
+              className="lg:w-20 lg:h-20 w-16 h-16  rounded-xl"
             />
           </Link>
 
           <button onClick={() => handlePlayTrack(item)} className="flex justify-center items-center">
-            <FaPlay className="text-black text-2xl cursor-pointer" />
+            <FaPlay className="text-black lg:text-2xl cursor-pointer" />
           </button>
 
           <div className="flex flex-col">

@@ -34,7 +34,7 @@ export default function HireStripeFrom() {
             try {
                 if (price) {
                     const payload = {
-                        amount: price * 100, // Stripe expects cents
+                        amount: price, // Stripe expects cents
                         payment_method: "pm_card_visa"
                     };
                     const res = await createPaymentIntent(payload).unwrap();

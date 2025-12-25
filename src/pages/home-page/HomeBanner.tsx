@@ -13,7 +13,7 @@ const HomeBanner: React.FC = () => {
                         {/* Left Side */}
                         <div className="  text-center lg:text-left flex-1 lg:w-[20%] w-full ">
                             <h1
-                                className={`text-[40px] font-bold headerColor uppercase   `}>
+                                className={`lg:text-[40px] text-xl font-bold headerColor uppercase   `}>
                                 ROYALTY-FREE VOCALS READY FOR RELEASE
                                 {/* Royalty-Free Vocals Ready for Release */}
                             </h1>

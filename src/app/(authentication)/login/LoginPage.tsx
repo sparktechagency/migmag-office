@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
                                 />
                             </Link>
                         </div>
-                        <h1 className="text-5xl font-bold leading-tight">
+                        <h1 className="lg:text-5xl text-2xl font-bold leading-tight">
                             Get <span className="btnTextColor">Vocals</span>
                             <br />
                             That <span className="btnTextColor">Stand</span> Out
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
                     </div>
 
                     {/* ✅ Right Side */}
-                    <div className="lg:w-1/2 w-full   mt-10  max-w-md px-4">
+                    <div className="lg:w-1/2 w-full   lg:mt-10  max-w-md px-4">
                         {/* Toggle Buttons */}
                         <div className="flex justify-center mb-6 rounded-md overflow-hidden shadow-lg">
                             <button
@@ -96,7 +96,7 @@ const LoginPage: React.FC = () => {
                 </div>
 
                 {/* Footer */}
-                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 text-sm mt-20 px-4">
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 text-sm lg:mt-20 px-4">
                     <Link href="/">
                         <Image
                             src="/images/logo/white-logo.svg"

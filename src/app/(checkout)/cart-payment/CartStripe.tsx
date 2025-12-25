@@ -23,7 +23,7 @@ export default function CartStripe() {
 
             try {
                 const payload = {
-                    amount: price * 100, // Stripe expects cents
+                    amount: price, // Stripe expects cents
                     payment_method: "pm_card_visa",
                 };
 

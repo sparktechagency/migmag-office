@@ -11,6 +11,7 @@ import { MusickPlayer } from "@/components/musick-player/MusickPlayer";
 import { usePlayerStore } from "@/app/store/usePlayerStore";
 import Link from "next/link";
 
+
 interface OrderDetailsProps {
   orderId: number | string;
   onClose: () => void;
@@ -45,12 +46,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
         path: string,
         filename: string
       ) => {
+        console.log("path is", path);
         if (!folder) return;
         const res = await fetch(`/songs/${path}`); // ✅ proxy
         if (!res.ok) throw new Error(`Failed: ${path}`);
         const blob = await res.blob();
         folder.file(filename, blob);
       };
+
+
 
       // 🎵 main song
       if (song?.song) {
@@ -108,6 +112,78 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
       console.error("Folder download failed:", error);
     }
   };
+
+
+
+
+  // const downloadSongAsZip = async (folderName: string, songUrl: string) => {
+  //   try {
+  //     const zip = new JSZip();
+  //     const mainFolder = zip.folder(folderName);
+  //     if (!mainFolder) return;
+
+  //     // ✅ extract path for rewrite
+  //     const path = songUrl.split("api.tunem.com/")[1];
+  //     if (!path) throw new Error("Invalid song URL");
+
+  //     const res = await fetch(`/songs/${path}`);
+  //     if (!res.ok) throw new Error("Song fetch failed");
+
+  //     const blob = await res.blob();
+
+  //     // Extract filename
+  //     const fileName = path.split("/").pop() || "song.mp3";
+  //     mainFolder.file(fileName, blob);
+
+  //     const zipBlob = await zip.generateAsync({ type: "blob" });
+
+  //     const link = document.createElement("a");
+  //     link.href = URL.createObjectURL(zipBlob);
+  //     link.download = `${folderName}.zip`;
+  //     link.click();
+  //     URL.revokeObjectURL(link.href);
+
+  //   } catch (err) {
+  //     console.error("Folder download failed:", err);
+  //   }
+  // };
+
+
+  const downloadSongAsZip = async (folderName: string, songUrl: string) => {
+    try {
+      const zip = new JSZip();
+      const mainFolder = zip.folder(folderName);
+      if (!mainFolder) return;
+
+      // Fetch the song
+      const res = await fetch(`/songs/${songUrl}`);
+      if (!res.ok) throw new Error("Song fetch failed");
+
+      const blob = await res.blob();
+
+      // Extract filename from URL
+      const fileName = songUrl.split("/").pop() || "song.mp3";
+
+      // Add song to folder
+      mainFolder.file(fileName, blob);
+
+      // Generate ZIP
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+
+      // Download ZIP
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(zipBlob);
+      link.download = `${folderName}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+
+    } catch (err) {
+      console.error("Folder download failed:", err);
+    }
+  };
+
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data</div>;
@@ -196,14 +272,38 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
 
 
                 {/* Download All */}
-                <td className="px-6">
-                  <button
-                    onClick={() => handleDownloadAllFiles(item.song?.title, item.song)}
-                    className="w-8 h-8 flex items-center justify-center rounded-full btnColor transition"
-                  >
-                    <Download className="w-4 h-4 text-black cursor-pointer" />
-                  </button>
-                </td>
+
+
+                {
+                  item?.is_midifile == 1 ? <>
+                    <td className="px-6">
+                      <button
+                        onClick={() => handleDownloadAllFiles(item.song?.title, item.song)}
+                        className="w-8 h-8 flex items-center justify-center rounded-full btnColor transition"
+                      >
+                        <Download className="w-4 h-4 text-black cursor-pointer" />
+                      </button>
+                    </td>
+                  </> : <>
+                    <td className="px-6">
+                      <button
+                        onClick={() =>
+                          downloadSongAsZip(
+                            item.song?.title || "Music",
+                            item.song?.song
+                          )
+                        }
+                        className="w-8 h-8 flex items-center justify-center rounded-full btnColor transition"
+                      >
+                        <Download className="w-4 h-4 text-black cursor-pointer" />
+                      </button>
+                    </td>
+                  </>
+                }
+
+
+
+
               </tr>
             ))}
           </tbody>

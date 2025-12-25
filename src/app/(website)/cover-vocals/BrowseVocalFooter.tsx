@@ -173,35 +173,35 @@ const BrowseVocalFooter: React.FC = () => {
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20  " // center the image horizontally
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16 " // center the image horizontally
                         />
                         <Image
                             src="/images/footer/master-card.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20 "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16"
                         />
                         <Image
                             src="/images/footer/visa.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover  w-20 h-20 "
+                            className="mx-auto object-cover  lg:w-20 lg:h-20 w-16 h-16"
                         />
                         <Image
                             src="/images/footer/apple-pay.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20 "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16"
                         />
                         <Image
                             src="/images/footer/google-pay.png"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover w-20 h-20  "
+                            className="mx-auto object-cover lg:w-20 lg:h-20 w-16 h-16 "
                         />
                     </div>
                 </div>
