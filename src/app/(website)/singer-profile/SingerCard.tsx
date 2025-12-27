@@ -52,7 +52,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                                 alt={artist.name}
                                 width={50}
                                 height={50}
-                                className="rounded-full w-16 h-16"
+                                className="rounded-full w-16 h-16 object-cover "
                             />
                         </Link>
                         <div>
@@ -116,7 +116,7 @@ const ArtistCard: React.FC<{ artist: ArtistCardProps, index: number }> = ({ arti
                                 alt={artist.name}
                                 width={50}
                                 height={50}
-                                className="rounded-full w-12 h-12"
+                                className="rounded-full w-12 h-12 object-contain "
                             />
                         </Link>
 
