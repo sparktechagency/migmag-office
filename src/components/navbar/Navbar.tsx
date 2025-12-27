@@ -233,7 +233,7 @@ const Navbar: React.FC = () => {
                         alt={userData?.full_name || "User Avatar"}
                         width={40}
                         height={40}
-                        className="rounded-full cursor-pointer border w-14 h-14  "
+                        className="rounded-full cursor-pointer border w-14 h-14  object-cover   "
                       />
                     </Link>
                   )

@@ -79,36 +79,45 @@ const TopTenVocal: React.FC = () => {
     return (
       <div key={item.id}>
         <div className="border-b hover:bg-gray-100 flex flex-row lg:flex-row items-center justify-between gap-y-2 lg:gap-y-0 lg:py-2 py-3 lg:px-10 px-2 my-2 rounded-lg lg:max-w-[713px] w-full  transition-all duration-300 cursor-pointer">
-          <h1 className="lg:text-3xl text-xl headerColor">{index + 1}</h1>
-
-          <Link href={`/music-details/${item.id}`}>
-            <Image
-              src={imagePath}
-              alt={item.title}
-              width={100}
-              height={100}
-              className="lg:w-20 lg:h-20 w-16 h-16  rounded-xl"
-            />
-          </Link>
-
-          <button onClick={() => handlePlayTrack(item)} className="flex justify-center items-center">
-            <FaPlay className="text-black lg:text-2xl cursor-pointer" />
-          </button>
-
-          <div className="flex flex-col">
-            <Link href={`/singer-profile/${item.artist.slug}`}>
-              <h3 className="text-xs font-bold leading-6 hover:underline headerColor">
-                {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
-              </h3>
+          <div className={`w-[5%]`} >
+            <h1 className="lg:text-3xl text-xl headerColor">{index + 1}</h1>
+          </div>
+          <div className=" w-[20%] " >
+            <Link href={`/music-details/${item.id}`}>
+              <Image
+                src={imagePath}
+                alt={item.title}
+                width={100}
+                height={100}
+                className="lg:w-20 lg:h-20 w-16 h-16  rounded-xl"
+              />
             </Link>
+          </div>
 
-            <div className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
-              <Link className={`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
-                {item.artist.name.length > 10 ? item.artist.name.slice(0, 10) + "..." : item.artist.name}
-              </Link>
-              <div className="flex justify-center items-center gap-x-3 text-xs ">
-                <span  >{item?.license?.name}</span>
-                <span  >${item?.price}</span>
+          <div className={` w-[5%] `} >
+            <button onClick={() => handlePlayTrack(item)} className="flex justify-center items-center ">
+              <FaPlay className="text-black lg:text-2xl cursor-pointer" />
+            </button>
+          </div>
+
+          <div className="w-[40%]  " >
+            <div className="flex flex-col  ">
+              <div>
+                <Link href={`/singer-profile/${item.artist.slug}`}>
+                  <h3 className="text-xs font-bold leading-6 hover:underline headerColor">
+                    {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
+                  </h3>
+                </Link>
+              </div>
+
+              <div className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
+                <Link className={`text-xs`} href={`/singer-profile/${item.artist.slug}`}>
+                  {item.artist.name.length > 10 ? item.artist.name.slice(0, 10) + "..." : item.artist.name}
+                </Link>
+                <div className="flex  gap-x-3 text-xs ">
+                  <span  >{item?.license?.name}</span>
+                  <span  >${item?.price}</span>
+                </div>
               </div>
             </div>
           </div>
